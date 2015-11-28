@@ -19,9 +19,20 @@ public class Board {
         }
     }
 
-    public void makeMove(int coordinateX, int coordinateY, String nextWord) {
+    public void makeMove(int coordinateX, int coordinateY, int coordinateX2, int coordinateY2, String nextWord) {
 
-        board[coordinateX - 1][coordinateY - 1] = nextWord.charAt(0);
+        //If coordinateX == coordinateX2, the direction is from left to right
+
+        if (coordinateX == coordinateX2) {
+            for (int i = 0; i < nextWord.length(); i++) {
+                board[coordinateX][coordinateY + i] = nextWord.charAt(i);
+            }
+
+        //If coordinateX != coordinateX2, the direction is down
+        } else
+            for (int j = 0; j < nextWord.length(); j++) {
+                board[coordinateX + j][coordinateY] = nextWord.charAt(j);
+            }
 
     }
 

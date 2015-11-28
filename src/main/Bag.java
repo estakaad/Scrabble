@@ -1,7 +1,10 @@
 /*
 package main;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Random;
 
 public class Bag {
 
@@ -9,6 +12,7 @@ public class Bag {
 /* Generate HashMap. Each letter tile in the bag is represented is a character. To each letter tile,
         an amount and a value is assigned. For example, there are 10 letter A tiles in the bag and each is
         worth 1 point.*//*
+
 
 
         HashMap<Character, HashMap> alphabet = new HashMap<>();
@@ -126,10 +130,22 @@ public class Bag {
 
         System.out.println(alphabet);
 
-        */
-/* Therefore, in the end of every move, the player has to pick as
-        many random letters from the bag as necessary to end up with seven letter tiles.
-         *//*
+
+
+    public void randomCharacters() {
+        HashMap<Character, HashMap> alphabet;
+
+        Random random = new Random();
+
+        List<String> keys = new ArrayList<String>(alphabet.keySet());
+
+        String randomKey = keys.get( random.nextInt(keys.size()) );
+
+        String value = alphabet.get(randomKey);
+
+
+
+    }
 
 }
 */

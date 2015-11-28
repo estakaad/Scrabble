@@ -9,15 +9,16 @@ public class Scrabble {
 
         public static void main(String[] args) {
 
-                //Initialize game
-
                 Game game = new Game();
+
+                game.run();
 
                 //Game
 
                 //Game over
 
         }
+
 
 
 }
