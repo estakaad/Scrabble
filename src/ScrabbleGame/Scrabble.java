@@ -1,9 +1,4 @@
-package main;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
-import java.io.IOException;
+package ScrabbleGame;
 
 public class Scrabble {
 
