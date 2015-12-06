@@ -6,7 +6,7 @@ public class Game {
 
     Scanner input = new Scanner(System.in);
     Board board = new Board();
-
+    Bag bag = new Bag();
 
     public void run() {
 
@@ -16,6 +16,7 @@ public class Game {
         int i = 0;
         i++;
         while (i < 5) {
+            bag.getLetters();
             String nextWord = askForWord();
             int[] firstCoordinates = askForFirstCoordinates();
             int[] secondCoordinates = askForSecondCoordinates();
