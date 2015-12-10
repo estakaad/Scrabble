@@ -1,5 +1,6 @@
 package ScrabbleGame;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class Game {
@@ -7,30 +8,33 @@ public class Game {
     Scanner input = new Scanner(System.in);
     Board board = new Board();
     Bag bag = new Bag();
+    Player player = new Player();
 
     public void run() {
 
-        //Bag bag = new Bag();
-        //bag.randomCharacters();
+        List generatedRack = bag.getLetters(7);
+        player.addLettersToRack(generatedRack);
+        int numberOfCharsNeeded = player.getAmountOfTilesToAdd();
+        bag.getLetters(numberOfCharsNeeded);
 
         int i = 0;
         i++;
         while (i < 5) {
-            bag.getLetters();
+
+            player.printRack();
             String nextWord = askForWord();
             int[] firstCoordinates = askForFirstCoordinates();
             int[] secondCoordinates = askForSecondCoordinates();
             input.nextLine();
             board.makeMove(firstCoordinates, secondCoordinates, nextWord);
+            player.getTilesRemovedFromRack(nextWord);
+            numberOfCharsNeeded = player.getAmountOfTilesToAdd();
+            generatedRack = bag.getLetters(numberOfCharsNeeded);
+            player.addLettersToRack(generatedRack);
             board.showBoard();
         }
 
-        //Bag bag = new Bag();
-        //Rack rack = new Rack();
-        //Player player = new Player();
-
     }
-
 
     //Get input for word
     private String askForWord() {

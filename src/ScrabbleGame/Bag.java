@@ -5,8 +5,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class Bag {
 
-    List<Character> tilesInBag = new ArrayList<Character>();
-    char randomChar;
+    private List<Character> tilesInBag = new ArrayList<Character>();
 
     //Generate bag of tiles
     public Bag() {
@@ -24,14 +23,20 @@ public class Bag {
 
     }
 
-    //Get 7 random letter tiles from the bag
-    public char getLetters() {
-        for (int i = 0; i < 7; i++) {
-            char randomChar = tilesInBag.get(ThreadLocalRandom.current().nextInt(tilesInBag.size()));
-            System.out.println(randomChar);
-            tilesInBag.remove(randomChar);
+    //Get random letter tiles from the bag and generate an array of them.
+
+    public List getLetters(int j) {
+        List<Character> generatedRack = new ArrayList<Character>();
+
+        for (int i = 0; i < j; i++) {
+            int randomCharIndex = (int)(Math.random() * ( tilesInBag.size() - 0 ) + 0 );
+            char randomChar = tilesInBag.get(randomCharIndex);
+            generatedRack.add(i, randomChar);
+            tilesInBag.remove(randomCharIndex);
         }
-        return randomChar;
+        return generatedRack; //Array of the chars player received from the bag
+
     }
+
 }
 
