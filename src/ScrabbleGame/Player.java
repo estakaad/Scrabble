@@ -5,24 +5,23 @@ import java.util.List;
 
 public class Player {
 
-    public List<Character> playersRack = new ArrayList<Character>();
+    private List<Character> playersRack = new ArrayList<Character>();
+
+    public List getPlayersRack() {
+        return playersRack;
+    }
 
     //Create a rack for player
 
-    public void addLettersToRack(List generatedRack) {
+    public ArrayList addLettersToRack(List generatedRack) {
         playersRack.addAll(generatedRack);
+        return null;
     }
 
     //Print player's rack
     public void printRack() {
         System.out.println(playersRack);
     }
-
-    //Fill the rack
-    /* public List getRackFull() {
-
-        return fullRack;
-    }*/
 
     /*Calculate, how many more tiles are needed to get from the bag to end up with seven tiles on hand.*/
 

@@ -1,7 +1,9 @@
 package ScrabbleGame;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class Board {
 
@@ -17,32 +19,61 @@ public class Board {
         }
     }
 
-
     /*
     Check whether the requested move is legal. Constraints that apply:
     1. The word must be within the board's boundaries.
     2. The word must be comprised of the letters available on the rack.
-    3. At least one of the letter's of the new word must already be on the board.
+    3. At least one of the letters of the new word must already be on the board.
     Check until true.
     */
 
-    public boolean checkNewWordsLegality(String newWord, int[] firstLetterCoordinates, String wordDirection) {
+    public boolean checkNewWordsLegality(String newWord, int[] firstLetterCoordinates, String wordDirection, List playersRack, List nextWordArray) {
 
-        if ((wordDirection.equals("H") && (firstLetterCoordinates[0] + newWord.length() > 14))) {
+        if (checkHorizontally(newWord, firstLetterCoordinates, wordDirection) == false)
+            return false;
+
+        if (checkVertically(newWord, firstLetterCoordinates, wordDirection) == false)
+            return false;
+
+        if (checkRackContainsWord(playersRack, nextWordArray) == false)
+            return false;
+
+        return true;
+    }
+
+    //Check whether user can set the word horizontally
+
+    private boolean checkHorizontally(String newWord, int[] firstLetterCoordinates, String wordDirection) {
+        if ((wordDirection.equals("H") && ((firstLetterCoordinates[1] + newWord.length()) > 15))) {
+            System.out.println(firstLetterCoordinates[1]);
+            System.out.println(newWord.length());
             System.out.println("Sõna ei mahu horisontaalselt lauale.");
             return false;
         }
+        return true;
+    }
 
-        if ((wordDirection.equals("V") && (firstLetterCoordinates[1] + newWord.length() > 14))) {
+    //Check whether user can set the word vertically
+
+    private boolean checkVertically(String newWord, int[] firstLetterCoordinates, String wordDirection) {
+        if ((wordDirection.equals("V") && ((firstLetterCoordinates[0] + newWord.length()) > 15))) {
+            System.out.println(firstLetterCoordinates[0]);
+            System.out.println(newWord.length());
             System.out.println("Sõna ei mahu vertikaalselt lauale.");
             return false;
         }
+        return true;
+    }
 
-/*        if (!playersRack.containsAll(newWord)) {
+    //Check whether user's word is comprised of the letters on the rack
+
+    private boolean checkRackContainsWord(List playersRack, List nextWordArray) {
+        if (!playersRack.containsAll(nextWordArray)) {
+            System.out.println(playersRack);
+            System.out.println(nextWordArray);
             System.out.println("Sinu käes olevatest tähtedest ei saa seda sõna moodustada.");
             return false;
-        }*/
-
+        }
         return true;
     }
 
@@ -51,7 +82,7 @@ public class Board {
 
     public void makeMove(int[] firstLettersCoordinates, String direction, String nextWord) {
 
-        if (direction.equals("H")) {
+        if (direction.equals("H") || direction.equals("h")) {
             for (int i = 0; i < nextWord.length(); i++) {
                 board[firstLettersCoordinates[0]][firstLettersCoordinates[1] + i] = nextWord.charAt(i);
             }

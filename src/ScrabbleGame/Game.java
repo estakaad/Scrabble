@@ -1,8 +1,10 @@
 package ScrabbleGame;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class Game {
 
@@ -25,13 +27,15 @@ public class Game {
             player.printRack();
 
             String nextWord = askForWord();
+            List<Character> nextWordArray = nextWord.chars().mapToObj(e->(char)e).collect(Collectors.toList());
+
             int[] firstCoordinates = askForFirstCoordinates();
             String direction = askForDirection();
             input.nextLine();
 
-            while (!board.checkNewWordsLegality(nextWord, firstCoordinates, direction)) {
-
+            while (!board.checkNewWordsLegality(nextWord, firstCoordinates, direction, player.getPlayersRack(), nextWordArray)) {
                 nextWord = askForWord();
+                nextWordArray = nextWord.chars().mapToObj(e->(char)e).collect(Collectors.toList());
                 firstCoordinates = askForFirstCoordinates();
                 direction = askForDirection();
                 input.nextLine();
@@ -73,7 +77,7 @@ public class Game {
         int coordinateX = input.nextInt();
         int coordinateY = input.nextInt();
 
-        while ( ( coordinateX > 15 ) || ( coordinateY > 15 ) ) {
+        while ( ( coordinateX > 14 ) || ( coordinateY > 14 ) ) {
             System.out.println("Koordinaadid peavad olema vahemikus 0-14. Proovi uuesti.");
             coordinateX = input.nextInt();
             coordinateY = input.nextInt();
