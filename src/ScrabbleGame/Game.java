@@ -12,6 +12,7 @@ public class Game {
     Board board = new Board();
     Bag bag = new Bag();
     Player player = new Player();
+    Word word = new Word();
 
     public void run() {
 
@@ -44,26 +45,44 @@ public class Game {
             player.printRack();
 
             board.makeMove(firstCoordinates, direction, nextWord);
-
             player.getTilesRemovedFromRack(nextWord);
 
             numberOfCharsNeeded = player.getAmountOfTilesToAdd();
-
             generatedRack = bag.getLetters(numberOfCharsNeeded);
             player.addLettersToRack(generatedRack);
             board.showBoard();
         }
 
     }
-    //Get input for word, coordinates and direction
 
+    //Ask for input until the input is legal.
+    private void askForInput() {
+
+        String nextWord = askForWord();
+        List<Character> nextWordArray = nextWord.chars().mapToObj(e->(char)e).collect(Collectors.toList());
+
+        int[] firstCoordinates = askForFirstCoordinates();
+        String direction = askForDirection();
+        input.nextLine();
+
+        while (!board.checkNewWordsLegality(nextWord, firstCoordinates, direction, player.getPlayersRack(), nextWordArray)) {
+            nextWord = askForWord();
+            nextWordArray = nextWord.chars().mapToObj(e->(char)e).collect(Collectors.toList());
+            firstCoordinates = askForFirstCoordinates();
+            direction = askForDirection();
+            input.nextLine();
+        }
+    }
 
     //Get input for word
-    private String askForWord() {
+    public String askForWord() {
 
         System.out.println("Mis sõna tahad lauale panna?");
 
         String nextWord = input.nextLine();
+
+        //Word word = new Word();
+        //word.setWord(nextWord);
 
         return nextWord;
 

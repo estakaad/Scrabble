@@ -24,7 +24,6 @@ public class Bag {
     }
 
     //Get random letter tiles from the bag and generate an array of them.
-
     public List getLetters(int j) {
         List<Character> generatedRack = new ArrayList<Character>();
 

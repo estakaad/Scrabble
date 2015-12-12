@@ -42,11 +42,8 @@ public class Board {
     }
 
     //Check whether user can set the word horizontally
-
     private boolean checkHorizontally(String newWord, int[] firstLetterCoordinates, String wordDirection) {
         if ((wordDirection.equals("H") && ((firstLetterCoordinates[1] + newWord.length()) > 15))) {
-            System.out.println(firstLetterCoordinates[1]);
-            System.out.println(newWord.length());
             System.out.println("Sõna ei mahu horisontaalselt lauale.");
             return false;
         }
@@ -54,11 +51,8 @@ public class Board {
     }
 
     //Check whether user can set the word vertically
-
     private boolean checkVertically(String newWord, int[] firstLetterCoordinates, String wordDirection) {
         if ((wordDirection.equals("V") && ((firstLetterCoordinates[0] + newWord.length()) > 15))) {
-            System.out.println(firstLetterCoordinates[0]);
-            System.out.println(newWord.length());
             System.out.println("Sõna ei mahu vertikaalselt lauale.");
             return false;
         }
@@ -66,11 +60,8 @@ public class Board {
     }
 
     //Check whether user's word is comprised of the letters on the rack
-
     private boolean checkRackContainsWord(List playersRack, List nextWordArray) {
         if (!playersRack.containsAll(nextWordArray)) {
-            System.out.println(playersRack);
-            System.out.println(nextWordArray);
             System.out.println("Sinu käes olevatest tähtedest ei saa seda sõna moodustada.");
             return false;
         }
@@ -79,7 +70,6 @@ public class Board {
 
 
     //Make the move according to the first coordinates and the direction the user has set.
-
     public void makeMove(int[] firstLettersCoordinates, String direction, String nextWord) {
 
         if (direction.equals("H") || direction.equals("h")) {
