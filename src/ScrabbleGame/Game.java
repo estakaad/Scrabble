@@ -1,5 +1,6 @@
 package ScrabbleGame;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -22,19 +23,36 @@ public class Game {
         while (i < 5) {
 
             player.printRack();
+
             String nextWord = askForWord();
             int[] firstCoordinates = askForFirstCoordinates();
-            int[] secondCoordinates = askForSecondCoordinates();
+            String direction = askForDirection();
             input.nextLine();
-            board.makeMove(firstCoordinates, secondCoordinates, nextWord);
+
+            while (!board.checkNewWordsLegality(nextWord, firstCoordinates, direction)) {
+
+                nextWord = askForWord();
+                firstCoordinates = askForFirstCoordinates();
+                direction = askForDirection();
+                input.nextLine();
+            }
+
+            player.printRack();
+
+            board.makeMove(firstCoordinates, direction, nextWord);
+
             player.getTilesRemovedFromRack(nextWord);
+
             numberOfCharsNeeded = player.getAmountOfTilesToAdd();
+
             generatedRack = bag.getLetters(numberOfCharsNeeded);
             player.addLettersToRack(generatedRack);
             board.showBoard();
         }
 
     }
+    //Get input for word, coordinates and direction
+
 
     //Get input for word
     private String askForWord() {
@@ -48,7 +66,7 @@ public class Game {
     }
 
     //Get input for coordinates of the first letter
-    private int[] askForFirstCoordinates() {
+    public int[] askForFirstCoordinates() {
 
         System.out.println("Kuhu tahad sõna panna? Kirjuta esimese tähe koordinaadid kujul x y.");
 
@@ -67,16 +85,14 @@ public class Game {
 
     }
 
-    //Get input for coordinates of the second letter, which will show the direction of the word
-    private int[] askForSecondCoordinates() {
+    //Get input for the direction of the word
+    private String askForDirection() {
 
-        System.out.println("Sisesta sõna teise tähe koordinaadid.");
+        System.out.println("Kas sa tahad sõna sisestada vasakult paremale ehk horisontaalselt või ülalt alla ehk vertikaalselt? Kirjuta H või V.");
 
-        int coordinateX2 = input.nextInt();
-        int coordinateY2 = input.nextInt();
+        String direction = input.next();
 
-        int[] secondCoordinates = {coordinateX2, coordinateY2};
-
-        return secondCoordinates;
+        return direction;
     }
+
 }

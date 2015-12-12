@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Player {
 
-    private List<Character> playersRack = new ArrayList<Character>();
+    public List<Character> playersRack = new ArrayList<Character>();
 
     //Create a rack for player
 
@@ -42,10 +42,6 @@ public class Player {
         }
         return playersRack;
     }
-
-
-    //Check whether the inserted word consists of the random letters.
-
 
 
 }
