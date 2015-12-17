@@ -42,6 +42,8 @@ public class Game {
                 input.nextLine();
             }
 
+            bag.getValue(nextWord);
+
             player.printRack();
 
             board.makeMove(firstCoordinates, direction, nextWord);
@@ -81,8 +83,8 @@ public class Game {
 
         String nextWord = input.nextLine();
 
-        //Word word = new Word();
-        //word.setWord(nextWord);
+        Word word = new Word();
+        word.setWord(nextWord);
 
         return nextWord;
 

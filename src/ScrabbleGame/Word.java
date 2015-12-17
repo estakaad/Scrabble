@@ -17,17 +17,22 @@ public class Word {
     public String getWord() {
         return word;
     }
-/*
-    public List setWordAsCharArray() {
-        return wordAsCharArray;
-    }
 
+    public int getWordLength(String word) { return word.length(); }
+
+    public List setWordAsCharArray(String inputWord) {
+        List<Character> wordArray = inputWord.chars().mapToObj(e->(char)e).collect(Collectors.toList());
+        return wordArray;
+    }
+/*
     public String setUpperCase() {
+        String upperCaseWord = word.toUpperCase();
         return upperCaseWord;
     }
 
-    public Array getCoordinates() {
-        return firstCoordinates;
+    public List getCoordinates() {
+
+        return wordsFirstCoordinates;
     }
 
     public String getDirection() {

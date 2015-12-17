@@ -21,10 +21,12 @@ public class Board {
 
     /*
     Check whether the requested move is legal. Constraints that apply:
-    1. The word must be within the board's boundaries.
-    2. The word must be comprised of the letters available on the rack.
-    3. At least one of the letters of the new word must already be on the board.
-    Check until true.
+    1. The word must be within the board's boundaries. - done
+    2. The word must be comprised of the letters available on the rack. - done
+    3. Word must
+        extend an already existent word on the board (mets > avaht) OR
+        hook a word by adding one letter to a previously played word OR
+        playing perpendicular (maja > daam) OR play parallel (no / oi)
     */
 
     public boolean checkNewWordsLegality(String newWord, int[] firstLetterCoordinates, String wordDirection, List playersRack, List nextWordArray) {
@@ -35,9 +37,22 @@ public class Board {
         if (checkVertically(newWord, firstLetterCoordinates, wordDirection) == false)
             return false;
 
+        /*if (isItInRightPlace(firstLetterCoordinates) == false)
+            return false;*/
+
         if (checkRackContainsWord(playersRack, nextWordArray) == false)
             return false;
 
+        return true;
+    }
+
+    //Check whether the word consists of at least two characters
+
+    private boolean checkForTwoLetterLength(String newWord) {
+        if (newWord.length() < 2) {
+            System.out.println("Sõna on liiga lühike");
+            return false;
+        }
         return true;
     }
 
@@ -68,8 +83,25 @@ public class Board {
         return true;
     }
 
+    //Conditions for coordinates
 
-    //Make the move according to the first coordinates and the direction the user has set.
+    //Does the new word extend an already existent word on the board (mets > avaht) OR
+    //Is the new word hooked by adding one letter to a previously played word OR
+    //Make the move according to the first coordinates and the direction the user has set
+
+    public boolean isItInRightPlace(int[] firstLettersCoordinates) {
+
+        for (int i = 0; i < 15; i++) {
+            for (int j = 0; j < 15; j++) {
+                if (board[i][j] == '?') {
+
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
     public void makeMove(int[] firstLettersCoordinates, String direction, String nextWord) {
 
         if (direction.equals("H") || direction.equals("h")) {
