@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4325afeb-4d61-4497-9890-ed0697aa6e5f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ScrabbleGame/Board.java" afterPath="$PROJECT_DIR$/src/ScrabbleGame/Board.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/ScrabbleGame/Game.java" afterPath="$PROJECT_DIR$/src/ScrabbleGame/Game.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
     </list>
     <ignored path="Scrabble.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -38,10 +36,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Board.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Board.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ScrabbleGame/Board.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.70498085">
+            <state vertical-scroll-proportion="0.0">
               <caret line="74" column="51" selection-start-line="74" selection-start-column="51" selection-end-line="74" selection-end-column="51" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -53,6 +51,16 @@
                 <element signature="method#isBoardEmpty#0;class#Board#0" expanded="false" />
                 <element signature="method#showBoard#0;class#Board#0" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.11494253">
+              <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -129,6 +137,7 @@
         <option value="$PROJECT_DIR$/src/ScrabbleGame/Bag.java" />
         <option value="$PROJECT_DIR$/src/ScrabbleGame/Game.java" />
         <option value="$PROJECT_DIR$/src/ScrabbleGame/Board.java" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -930,7 +939,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ScrabbleGame/Board.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.70498085">
+        <state vertical-scroll-proportion="0.0">
           <caret line="74" column="51" selection-start-line="74" selection-start-column="51" selection-end-line="74" selection-end-column="51" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -942,6 +951,14 @@
             <element signature="method#isBoardEmpty#0;class#Board#0" expanded="false" />
             <element signature="method#showBoard#0;class#Board#0" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.11494253">
+          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
