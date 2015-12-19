@@ -83,7 +83,10 @@ public class Game {
 
         String nextWord = input.nextLine();
 
+        nextWord = nextWord.toUpperCase();
+
         Word word = new Word();
+
         word.setWord(nextWord);
 
         return nextWord;
@@ -116,6 +119,8 @@ public class Game {
         System.out.println("Kas sa tahad sõna sisestada vasakult paremale ehk horisontaalselt või ülalt alla ehk vertikaalselt? Kirjuta H või V.");
 
         String direction = input.next();
+
+        direction = direction.toUpperCase();
 
         return direction;
     }

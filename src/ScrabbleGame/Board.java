@@ -19,16 +19,6 @@ public class Board {
         }
     }
 
-    /*
-    Check whether the requested move is legal. Constraints that apply:
-    1. The word must be within the board's boundaries. - done
-    2. The word must be comprised of the letters available on the rack. - done
-    3. Word must
-        extend an already existent word on the board (mets > avaht) OR
-        hook a word by adding one letter to a previously played word OR
-        playing perpendicular (maja > daam) OR play parallel (no / oi)
-    */
-
     public boolean checkNewWordsLegality(String newWord, int[] firstLetterCoordinates, String wordDirection, List playersRack, List nextWordArray) {
 
         if (checkHorizontally(newWord, firstLetterCoordinates, wordDirection) == false)
@@ -37,8 +27,8 @@ public class Board {
         if (checkVertically(newWord, firstLetterCoordinates, wordDirection) == false)
             return false;
 
-        /*if (isItInRightPlace(firstLetterCoordinates) == false)
-            return false;*/
+        if (isWordAdjacent(firstLetterCoordinates, wordDirection, newWord) == false)
+          return false;
 
         if (checkRackContainsWord(playersRack, nextWordArray) == false)
             return false;
@@ -47,7 +37,6 @@ public class Board {
     }
 
     //Check whether the word consists of at least two characters
-
     private boolean checkForTwoLetterLength(String newWord) {
         if (newWord.length() < 2) {
             System.out.println("Sõna on liiga lühike");
@@ -83,28 +72,43 @@ public class Board {
         return true;
     }
 
-    //Conditions for coordinates
+    //Is the input adjacent to an already set word.
+    public boolean isWordAdjacent(int[] firstCoordinates, String directionOfInput, String inputWord) {
 
-    //Does the new word extend an already existent word on the board (mets > avaht) OR
-    //Is the new word hooked by adding one letter to a previously played word OR
-    //Make the move according to the first coordinates and the direction the user has set
-
-    public boolean isItInRightPlace(int[] firstLettersCoordinates) {
-
-        for (int i = 0; i < 15; i++) {
-            for (int j = 0; j < 15; j++) {
-                if (board[i][j] == '?') {
-
-                    return false;
+        if (!isBoardEmpty()) {
+            if (directionOfInput.equals("H")) {
+                for (int i = 0; i < inputWord.length(); i++) {
+                    if ((board[(firstCoordinates[0] - 1)][(firstCoordinates[1] + i)] != '?') ||
+                            (board[(firstCoordinates[0] + 1)][(firstCoordinates[1] + i)] != '?') ||
+                            (board[firstCoordinates[0]][(firstCoordinates[1] + i - 1)] != '?') ||
+                            (board[firstCoordinates[0]][(firstCoordinates[1] + i + 1)] != '?')
+                            ) {
+                        return true; // Returns true, if there is at least one letter adjacent to a letter on the board
+                    }
                 }
             }
+            else {
+                for (int j = 0; j < inputWord.length(); j++) {
+
+                    if ((board[(firstCoordinates[0] + j - 1)][firstCoordinates[1]] != '?') ||
+                            (board[(firstCoordinates[0] + j + 1)][firstCoordinates[1]] != '?') ||
+                            (board[(firstCoordinates[0] + j)][(firstCoordinates[1] - 1)] != '?') ||
+                            (board[(firstCoordinates[0] + j)][(firstCoordinates[1] + 1 )] != '?')
+                            ) {
+                        return true; // Returns true, if there is at least one letter adjacent to a letter on the board
+                    }
+                }
+            }
+            System.out.println("Ürita uuesti, sest sõnas peab olema vähemalt üks täht, mis on lauale pandud tähega kõrvuti.");
+            return false;
         }
         return true;
     }
 
+    // Where to set the input
     public void makeMove(int[] firstLettersCoordinates, String direction, String nextWord) {
 
-        if (direction.equals("H") || direction.equals("h")) {
+        if (direction.equals("H")) {
             for (int i = 0; i < nextWord.length(); i++) {
                 board[firstLettersCoordinates[0]][firstLettersCoordinates[1] + i] = nextWord.charAt(i);
             }
@@ -115,6 +119,21 @@ public class Board {
             }
 
     }
+
+    //Check if board is empty, return if it is
+    public boolean isBoardEmpty() {
+
+        for (int i = 0; i < 15; i++) {
+            for (int j = 0; j < 15; j++) {
+                if (board[i][j] != '?') {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+
 
     //Print board
     public void showBoard() {
