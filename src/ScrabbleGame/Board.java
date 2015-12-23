@@ -8,6 +8,7 @@ import java.util.List;
 public class Board {
 
     char[][] board = new char[15][15];
+    DictionaryDatabase db = new DictionaryDatabase();
 
     //Generate the game board. The board is a square with a 15*15 grid of cells. Each cell accommodates one letter.
     public Board() {
@@ -33,6 +34,19 @@ public class Board {
         if (checkRackContainsWord(playersRack, nextWordArray) == false)
             return false;
 
+        if (checkWordFromDictionary(newWord) == false)
+            return false;
+
+        return true;
+    }
+
+    //Check whether word is in dictionary
+   private boolean checkWordFromDictionary(String newWord) {
+       System.out.println(db.wordCount(newWord));
+        if (db.wordCount(newWord) == 0) {
+            System.out.println("Sõna pole sõnaraamatus.");
+            return false;
+        }
         return true;
     }
 

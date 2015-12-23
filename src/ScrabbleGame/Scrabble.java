@@ -6,14 +6,12 @@ public class Scrabble {
 
                 Game game = new Game();
 
-                game.run();
+               game.run();
+
 
                 //Game
 
                 //Game over
 
         }
-
-
-
 }
