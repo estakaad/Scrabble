@@ -1,0 +1,9 @@
+.root {
+    -fx-background-color: darkseagreen;
+    -fx-alignment: center;
+    -fx-border-color: darkgreen;
+    -fx-font-size: 16px;
+}
+#board-grid {
+    -fx-background-color: darkgreen;
+}
