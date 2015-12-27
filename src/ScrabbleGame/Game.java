@@ -57,36 +57,14 @@ public class Game {
 
     }
 
-    //Ask for input until the input is legal.
-    private void askForInput() {
-
-        String nextWord = askForWord();
-        List<Character> nextWordArray = nextWord.chars().mapToObj(e->(char)e).collect(Collectors.toList());
-
-        int[] firstCoordinates = askForFirstCoordinates();
-        String direction = askForDirection();
-        input.nextLine();
-
-        while (!board.checkNewWordsLegality(nextWord, firstCoordinates, direction, player.getPlayersRack(), nextWordArray)) {
-            nextWord = askForWord();
-            nextWordArray = nextWord.chars().mapToObj(e->(char)e).collect(Collectors.toList());
-            firstCoordinates = askForFirstCoordinates();
-            direction = askForDirection();
-            input.nextLine();
-        }
-    }
 
     //Get input for word
     public String askForWord() {
 
         System.out.println("Mis sõna tahad lauale panna?");
-
         String nextWord = input.nextLine();
-
         nextWord = nextWord.toUpperCase();
-
         Word word = new Word();
-
         word.setWord(nextWord);
 
         return nextWord;
@@ -108,7 +86,6 @@ public class Game {
         }
 
         int[] firstCoordinates = {coordinateX, coordinateY};
-
         return firstCoordinates;
 
     }
@@ -117,11 +94,8 @@ public class Game {
     private String askForDirection() {
 
         System.out.println("Kas sa tahad sõna sisestada vasakult paremale ehk horisontaalselt või ülalt alla ehk vertikaalselt? Kirjuta H või V.");
-
         String direction = input.next();
-
         direction = direction.toUpperCase();
-
         return direction;
     }
 
