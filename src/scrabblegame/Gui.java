@@ -6,15 +6,21 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.util.List;
+
 public class Gui {
+    Player player = new Player();
 
     public void createScene() {
+
+
         Stage primaryStage = new Stage();
         primaryStage.setTitle("Scrabble");
 
@@ -27,14 +33,14 @@ public class Gui {
         GridPane topGrid = new GridPane();
         topGrid.setId("board");
         topGrid.setAlignment(Pos.CENTER);
-        TextField[][] slots = new TextField[15][15];
+        TextField[][] squares = new TextField[15][15];
 
-        for(int i = 0; i < slots.length; i++){
-            for(int j = 0; j < slots.length;j++){
+        for (int i = 0; i < squares.length; i++) {
+            for(int j = 0; j < squares.length; j++) {
 
-                slots[i][j] = new TextField(" ");
-                slots[i][j].setPrefSize(30, 30);
-                topGrid.add(slots[i][j], i, j);
+                squares[i][j] = new TextField(" ");
+                squares[i][j].setPrefSize(30, 30);
+                topGrid.add(squares[i][j], i, j);
             }
 
         }
@@ -47,7 +53,8 @@ public class Gui {
         bottomGrid.setVgap(12);
         bottomGrid.setHgap(12);
 
-        TextField rack = new TextField("Siia tulevad tähed");
+        TextField rack = new TextField();
+        rack.appendText(String.valueOf(player.getPlayersRack()));
         GridPane.setConstraints(rack, 1, 1);
 
         Button makeMove = new Button("Tee käik ära");
@@ -59,10 +66,10 @@ public class Gui {
         Label points = new Label("Punktid selle käigu eest");
         GridPane.setConstraints(points, 2, 2);
 
-        Label numberTotalPoints = new Label("1000");
+        TextField numberTotalPoints = new TextField("1000");
         GridPane.setConstraints(numberTotalPoints, 3, 1);
 
-        Label numberPoints = new Label("1");
+        TextField numberPoints = new TextField();
         GridPane.setConstraints(numberPoints, 3, 2);
 
         bottomGrid.getChildren().addAll(rack, makeMove, totalPoints, points, numberTotalPoints, numberPoints);

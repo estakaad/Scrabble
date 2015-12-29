@@ -19,12 +19,13 @@ public class Scrabble extends Application {
 
     public void start(Stage primaryStage) throws Exception {
         Gui gui = new Gui();
-        Game game = new Game();
+        GuiGame guiGame = new GuiGame();
+        //ConsoleGame game = new ConsoleGame();
 
-        game.run();
         stage = primaryStage;
-
         gui.createScene();
+        guiGame.run();
+
 
     }
 

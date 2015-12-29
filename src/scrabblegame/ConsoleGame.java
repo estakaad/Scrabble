@@ -6,14 +6,13 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
-public class Game {
+public class ConsoleGame {
 
     Scanner input = new Scanner(System.in);
     Board board = new Board();
     Bag bag = new Bag();
     Player player = new Player();
     Word word = new Word();
-
     public void run() {
 
         List generatedRack = bag.getLetters(7);
@@ -92,7 +91,7 @@ public class Game {
     }
 
     //Get input for the direction of the word
-    private String askForDirection() {
+    public String askForDirection() {
 
         System.out.println("Kas sa tahad sõna sisestada vasakult paremale ehk horisontaalselt või ülalt alla ehk vertikaalselt? Kirjuta H või V.");
         String direction = input.next();

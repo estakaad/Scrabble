@@ -5,7 +5,7 @@ import java.util.HashMap;
 
 public class Bag {
 
-    private List<Character> tilesInBag = new ArrayList<Character>();
+    List<Character> tilesInBag = new ArrayList<Character>();
     HashMap<Character, Integer> values = new HashMap<Character, Integer>();
 
     //Generate bag of tiles
