@@ -18,10 +18,26 @@ public class Gui {
         Stage primaryStage = new Stage();
         primaryStage.setTitle("Scrabble");
 
+        VBox heading = new VBox();
+        Label topHeading = new Label("Scrabble");
+        heading.getChildren().add(topHeading);
+        heading.setAlignment(Pos.CENTER);
+        heading.setPadding(new Insets (50, 10, 10, 10));
+
         GridPane topGrid = new GridPane();
+        topGrid.setId("board");
         topGrid.setAlignment(Pos.CENTER);
-        TextField text = new TextField("siia tekst");
-        topGrid.getChildren().addAll(text);
+        TextField[][] slots = new TextField[15][15];
+
+        for(int i = 0; i < slots.length; i++){
+            for(int j = 0; j < slots.length;j++){
+
+                slots[i][j] = new TextField(" ");
+                slots[i][j].setPrefSize(30, 30);
+                topGrid.add(slots[i][j], i, j);
+            }
+
+        }
 
         GridPane bottomGrid = new GridPane();
 
@@ -51,11 +67,11 @@ public class Gui {
 
         bottomGrid.getChildren().addAll(rack, makeMove, totalPoints, points, numberTotalPoints, numberPoints);
 
-        BorderPane layout = new BorderPane();
-        layout.setTop(topGrid);
-        layout.setBottom(bottomGrid);
+        VBox layout = new VBox();
+        layout.setSpacing(25);
+        layout.getChildren().addAll(heading, topGrid, bottomGrid);
 
-        Scene scene = new Scene(layout, 600, 800);
+        Scene scene = new Scene(layout, 800, 800);
         primaryStage.setScene(scene);
         primaryStage.show();
 
