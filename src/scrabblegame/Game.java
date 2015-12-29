@@ -1,7 +1,7 @@
-package ScrabbleGame;
+package scrabblegame;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import javafx.application.Application;
+
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
@@ -22,8 +22,8 @@ public class Game {
         bag.getLetters(numberOfCharsNeeded);
 
         int i = 0;
-        i++;
-        while (i < 5) {
+
+        while (i < 1) {
 
             player.printRack();
 
@@ -53,6 +53,7 @@ public class Game {
             generatedRack = bag.getLetters(numberOfCharsNeeded);
             player.addLettersToRack(generatedRack);
             board.showBoard();
+            i++;
         }
 
     }

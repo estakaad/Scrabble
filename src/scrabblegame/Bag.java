@@ -1,10 +1,7 @@
-package ScrabbleGame;
-
-import com.sun.deploy.util.ArrayUtil;
+package scrabblegame;
 
 import java.util.*;
 import java.util.HashMap;
-import java.util.concurrent.ThreadLocalRandom;
 
 public class Bag {
 
