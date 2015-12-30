@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
 
-public class GuiGame {
+public class Game {
 
     Scanner input = new Scanner(System.in);
     Board board = new Board();
@@ -18,7 +18,6 @@ public class GuiGame {
     Player player = new Player();
     Word word = new Word();
     Gui gui = new Gui();
-    Button button = new Button();
 
     public void run() {
 
@@ -26,7 +25,7 @@ public class GuiGame {
     int numberOfCharsNeeded = player.getAmountOfTilesToAdd();
     bag.getLetters(numberOfCharsNeeded);
 
-    button.setOnAction(e -> gui);
+
 
     /*while (bag.tilesInBag.size() > 0 ) {
 
