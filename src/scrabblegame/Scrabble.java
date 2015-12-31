@@ -10,13 +10,8 @@ public class Scrabble extends Application {
 
     public void start(Stage primaryStage) throws Exception {
         Gui gui = new Gui();
-        Game game = new Game();
-        //ConsoleGame game = new ConsoleGame();
-
         stage = primaryStage;
         gui.createScene();
-        game.run();
-
 
     }
 

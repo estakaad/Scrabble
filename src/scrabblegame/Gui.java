@@ -16,18 +16,21 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class Gui {
-    Player player = new Player();
+
     TextField rack = new TextField();
     Button makeMove = new Button();
     Label totalLabel = new Label();
     TextField pointsTotal = new TextField();
     Label moveLabel = new Label();
     TextField pointsMove = new TextField();
-    TextField squares = new TextField();
     TextField messages = new TextField();
-    Board board = new Board();
-    Bag bag = new Bag();
+    ArrayList generatedRack = new ArrayList<>();
+    Game game = new Game();
 
     public void createScene() {
 
@@ -47,26 +50,10 @@ public class Gui {
 
         final TextField[][] squares = new TextField[15][15];
 
-        /* James_D http://stackoverflow.com/questions/34407694/javafx-textfield-allow-only-one-letter-to-be-typed?lq=1
-
-        Allow only one letter to be typed:
-
-        TextField textField = new TextField();
-        textField.setTextFormatter(new TextFormatter<String>((Change change) -> {
-            String newText = change.getControlNewText();
-            if (newText.length() > 1) {
-                return null ;
-            } else {
-                return change ;
-            }
-        });*/
-
-        String filler = "";
-
         for (int i = 0; i < squares.length; i++) {
-            for(int j = 0; j < squares.length; j++) {
+            for (int j = 0; j < squares.length; j++) {
 
-                squares[i][j] = new TextField(filler);
+                squares[i][j] = new TextField("");
                 squares[i][j].setPrefSize(30, 30);
 
                 topGrid.add(squares[i][j], i, j);
@@ -75,6 +62,20 @@ public class Gui {
 
         }
 
+        // James_D http://stackoverflow.com/questions/34407694/javafx-textfield-allow-only-one-letter-to-be-typed?lq=1
+        //Allow only one letter to be typed:
+        for (int i = 0; i < 15; i++) {
+            for (int j = 0; j < 15; j++) {
+                squares[i][j].setTextFormatter(new TextFormatter<String>((TextFormatter.Change change) -> {
+                    String newText = change.getControlNewText();
+                    if (newText.length() > 1) {
+                        return null ;
+                    } else {
+                        return change ;
+                    }
+                }));
+            }
+        }
 
         GridPane bottomGrid = new GridPane();
 
@@ -85,8 +86,8 @@ public class Gui {
         bottomGrid.setHgap(12);
 
         TextField rack = new TextField();
-
         GridPane.setConstraints(rack, 1, 1);
+        rack.setText(game.getPlayersRackString());
 
         Button makeMove = new Button("Tee käik ära");
         GridPane.setConstraints(makeMove, 1, 2);
@@ -101,8 +102,9 @@ public class Gui {
 
                 for (int i = 0; i < squares.length; i++) {
                     for (int j = 0; j < squares.length; j++) {
-                        if (squares[i][j].getText() != "") {
+                        if (!squares[i][j].getText().equals("")) {
                             System.out.printf(squares[i][j].getText());
+                            //System.out.println(i + ", " + j);
                         }
                     }
 
@@ -133,16 +135,5 @@ public class Gui {
         primaryStage.show();
 
     }
-    //http://stackoverflow.com/questions/15159988/javafx-2-2-textfield-maxlength ceklock
-    public static void addTextLimiter(final TextField tf, final int maxLength) {
-        tf.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(final ObservableValue<? extends String> ov, final String oldValue, final String newValue) {
-                if (tf.getText().length() > maxLength) {
-                    String s = tf.getText().substring(0, maxLength);
-                    tf.setText(s);
-                }
-            }
-        });
-    }
+
 }

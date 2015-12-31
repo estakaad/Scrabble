@@ -6,6 +6,7 @@ import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
@@ -17,14 +18,20 @@ public class Game {
     Bag bag = new Bag();
     Player player = new Player();
     Word word = new Word();
-    Gui gui = new Gui();
+
+    public Game() {
+        List generatedRack = bag.getLetters(7);
+        player.addLettersToRack(generatedRack);
+        System.out.println("käivitus");
+    }
+
+    public String getPlayersRackString() {
+        List playersRack = player.getPlayersRack();
+        String text = Arrays.toString(playersRack.toArray(new Character[playersRack.size()])).replace("[", "").replace("]", "").replace(", ", "");
+        return text;
+    }
 
     public void run() {
-
-    List generatedRack = bag.getLetters(7);
-    int numberOfCharsNeeded = player.getAmountOfTilesToAdd();
-    bag.getLetters(numberOfCharsNeeded);
-
 
 
     /*while (bag.tilesInBag.size() > 0 ) {
