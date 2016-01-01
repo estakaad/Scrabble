@@ -1,8 +1,5 @@
 package scrabblegame;
 
-import javafx.application.Application;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -17,8 +14,6 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class Gui {
 
@@ -28,9 +23,9 @@ public class Gui {
     TextField pointsTotal = new TextField();
     Label moveLabel = new Label();
     TextField pointsMove = new TextField();
-    TextField messages = new TextField();
     ArrayList generatedRack = new ArrayList<>();
     Game game = new Game();
+    TextField[][] squares = new TextField[15][15];
 
     public void createScene() {
 
@@ -50,17 +45,17 @@ public class Gui {
 
         final TextField[][] squares = new TextField[15][15];
 
+        //Textfields as 15*15 grid
         for (int i = 0; i < squares.length; i++) {
             for (int j = 0; j < squares.length; j++) {
 
                 squares[i][j] = new TextField("");
                 squares[i][j].setPrefSize(30, 30);
-
                 topGrid.add(squares[i][j], i, j);
-
             }
 
         }
+
 
         // James_D http://stackoverflow.com/questions/34407694/javafx-textfield-allow-only-one-letter-to-be-typed?lq=1
         //Allow only one letter to be typed:
@@ -88,27 +83,38 @@ public class Gui {
         TextField rack = new TextField();
         GridPane.setConstraints(rack, 1, 1);
         rack.setText(game.getPlayersRackString());
+        rack.setDisable(true);
 
         Button makeMove = new Button("Tee käik ära");
         GridPane.setConstraints(makeMove, 1, 2);
 
-        TextField messages = new TextField();
-        GridPane.setConstraints(messages, 1, 3);
-
         makeMove.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                //Check validity
 
-                for (int i = 0; i < squares.length; i++) {
-                    for (int j = 0; j < squares.length; j++) {
-                        if (!squares[i][j].getText().equals("")) {
-                            System.out.printf(squares[i][j].getText());
-                            //System.out.println(i + ", " + j);
+                char[][] wholeBoard = new char[15][15];
+
+                for (int row = 0; row < squares.length; row++) {
+                    for (int column = 0; column < squares.length; column++) {
+
+                        if ( squares[row][column].getText().isEmpty()) {
+                            wholeBoard[row][column] = ' ';
+                        } else {
+                            wholeBoard[row][column] = squares[row][column].getText().charAt(0);
                         }
                     }
-
                 }
+
+                game.printBoard(wholeBoard);
+
+                for (int i = 0; i < 15; i++) {
+                    for (int j = 0; j < 15; j++) {
+                        if (!squares[i][j].getText().isEmpty()) {
+                            squares[i][j].setDisable(true);
+                        }
+                    }
+                }
+
             }
         });
 
@@ -120,20 +126,35 @@ public class Gui {
 
         TextField pointsTotal = new TextField("1000");
         GridPane.setConstraints(pointsTotal, 3, 1);
+        pointsTotal.setDisable(true);
 
         TextField pointsMove = new TextField();
         GridPane.setConstraints(pointsMove, 3, 2);
+        pointsMove.setDisable(true);
 
-        bottomGrid.getChildren().addAll(rack, messages, makeMove, totalLabel, moveLabel, pointsTotal, pointsMove);
+        bottomGrid.getChildren().addAll(rack, makeMove, totalLabel, moveLabel, pointsTotal, pointsMove);
 
         VBox layout = new VBox();
         layout.setSpacing(25);
         layout.getChildren().addAll(heading, topGrid, bottomGrid);
 
         Scene scene = new Scene(layout, 800, 800);
+        //scene.getStylesheets().add("scrabblegame/stylesheet.css");
         primaryStage.setScene(scene);
         primaryStage.show();
 
     }
+
+    private void setNewStateOfBoard() {
+    }
+
+    private void disableFilledTiles() {
+
+    }
+
+    public void getWholeBoard() {
+
+    }
+
 
 }

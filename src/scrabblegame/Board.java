@@ -7,6 +7,7 @@ import java.util.List;
 public class Board {
 
     char[][] board = new char[15][15];
+
     DictionaryDatabase db = new DictionaryDatabase();
 
     //Generate the game board. The board is a square with a 15*15 grid of cells. Each cell accommodates one letter.
@@ -14,21 +15,35 @@ public class Board {
 
         for (int i = 0; i < 15; i++) {
             for (int j = 0; j < 15; j++) {
-                board[i][j] = '?';
+                board[i][j] = ' ';
             }
+        }
+    }
+
+    public char[][] getBoard() {
+        return board;
+    }
+
+    public void setBoard(char[][] newBoard) {
+        board = newBoard;
+    }
+
+
+    //Print board
+    public void showBoard() {
+
+        for (int i = 0; i < 15; i++) {
+            for (int j = 0; j < 15; j++) {
+                System.out.print(board[i][j] + " ");
+            }
+            System.out.println();
         }
     }
 
     public boolean checkNewWordsLegality(String newWord, int[] firstLetterCoordinates, String wordDirection, List playersRack, List nextWordArray) {
 
-        if (checkHorizontally(newWord, firstLetterCoordinates, wordDirection) == false)
-            return false;
-
-        if (checkVertically(newWord, firstLetterCoordinates, wordDirection) == false)
-            return false;
-
         if (isWordAdjacent(firstLetterCoordinates, wordDirection, newWord) == false)
-          return false;
+            return false;
 
         if (checkRackContainsWord(playersRack, nextWordArray) == false)
             return false;
@@ -40,8 +55,8 @@ public class Board {
     }
 
     //Check whether word is in dictionary
-   private boolean checkWordFromDictionary(String newWord) {
-       System.out.println(db.wordCount(newWord));
+    private boolean checkWordFromDictionary(String newWord) {
+        System.out.println(db.wordCount(newWord));
         if (db.wordCount(newWord) == 0) {
             System.out.println("Sõna pole sõnaraamatus.");
             return false;
@@ -53,24 +68,6 @@ public class Board {
     private boolean checkForTwoLetterLength(String newWord) {
         if (newWord.length() < 2) {
             System.out.println("Sõna on liiga lühike");
-            return false;
-        }
-        return true;
-    }
-
-    //Check whether user can set the word horizontally
-    private boolean checkHorizontally(String newWord, int[] firstLetterCoordinates, String wordDirection) {
-        if ((wordDirection.equals("H") && ((firstLetterCoordinates[1] + newWord.length()) > 15))) {
-            System.out.println("Sõna ei mahu horisontaalselt lauale.");
-            return false;
-        }
-        return true;
-    }
-
-    //Check whether user can set the word vertically
-    private boolean checkVertically(String newWord, int[] firstLetterCoordinates, String wordDirection) {
-        if ((wordDirection.equals("V") && ((firstLetterCoordinates[0] + newWord.length()) > 15))) {
-            System.out.println("Sõna ei mahu vertikaalselt lauale.");
             return false;
         }
         return true;
@@ -99,14 +96,13 @@ public class Board {
                         return true; // Returns true, if there is at least one letter adjacent to a letter on the board
                     }
                 }
-            }
-            else {
+            } else {
                 for (int j = 0; j < inputWord.length(); j++) {
 
                     if ((board[(firstCoordinates[0] + j - 1)][firstCoordinates[1]] != '?') ||
                             (board[(firstCoordinates[0] + j + 1)][firstCoordinates[1]] != '?') ||
                             (board[(firstCoordinates[0] + j)][(firstCoordinates[1] - 1)] != '?') ||
-                            (board[(firstCoordinates[0] + j)][(firstCoordinates[1] + 1 )] != '?')
+                            (board[(firstCoordinates[0] + j)][(firstCoordinates[1] + 1)] != '?')
                             ) {
                         return true; // Returns true, if there is at least one letter adjacent to a letter on the board
                     }
@@ -147,15 +143,17 @@ public class Board {
         return true;
     }
 
-
-    //Print board
-    public void showBoard() {
-
+    public boolean isWordInOneLine(int lastMoveBoard[][]) {
         for (int i = 0; i < 15; i++) {
             for (int j = 0; j < 15; j++) {
-                System.out.print(board[i][j] + " ");
+                if (lastMoveBoard[i][j] != ' ') {
+
+                }
+                return false;
             }
-            System.out.println();
         }
+
+        return true;
+
     }
 }
