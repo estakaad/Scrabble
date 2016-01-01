@@ -20,6 +20,21 @@ public class Board {
         }
     }
 
+
+    //Check if board is empty, return if it is
+    public boolean isBoardEmpty() {
+
+        for (int i = 0; i < 15; i++) {
+            for (int j = 0; j < 15; j++) {
+                if (board[i][j] != ' ') {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+
     public char[][] getBoard() {
         return board;
     }
@@ -129,19 +144,6 @@ public class Board {
 
     }
 
-    //Check if board is empty, return if it is
-    public boolean isBoardEmpty() {
-
-        for (int i = 0; i < 15; i++) {
-            for (int j = 0; j < 15; j++) {
-                if (board[i][j] != '?') {
-                    return false;
-                }
-            }
-        }
-
-        return true;
-    }
 
     public boolean isWordInOneLine(int lastMoveBoard[][]) {
         for (int i = 0; i < 15; i++) {

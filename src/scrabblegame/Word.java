@@ -27,14 +27,6 @@ public class Word {
         String upperCaseWord = word.toUpperCase();
         return upperCaseWord;
     }
-
-    public List getCoordinates() {
-
-        return wordsFirstCoordinates;
-    }
-
-    public String getDirection() {
-        return wordDirection;
-    }*/
+*/
 
 }
