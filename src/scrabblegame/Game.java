@@ -3,13 +3,13 @@ package scrabblegame;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
 
 public class Game {
 
     Board board = new Board();
     Bag bag = new Bag();
     Player player = new Player();
+    DictionaryDatabase db = new DictionaryDatabase();
 
     public Game() {
 
@@ -39,15 +39,13 @@ public class Game {
                 if (previousBoardState[i][j] != wholeBoard[i][j]) {
                     CoordinatePairs pair = new CoordinatePairs(j,i);
                     listOfCoordinatePairs.add(pair);
-                    enteredArray.add(Character.toUpperCase(wholeBoard[i][j]));
+                    enteredArray.add(wholeBoard[i][j]);
                 }
             }
         }
 
         //Checks if user used only letters from their rack
         List playersRack = player.getPlayersRack();
-        System.out.println(playersRack);
-        System.out.println(enteredArray);
 
         if (!playersRack.containsAll(enteredArray)) {
             legal = false;
@@ -58,10 +56,10 @@ public class Game {
         if (!board.isBoardEmpty()) {
             for (int i = 0; i < listOfCoordinatePairs.size(); i++) {
 
-                if ((wholeBoard[((listOfCoordinatePairs.get(i).p2) + 1)][((listOfCoordinatePairs.get(i).p1))] != ' ') || //Is there already a letter below the new input?
-                        (wholeBoard[(listOfCoordinatePairs.get(i).p2)][((listOfCoordinatePairs.get(i).p1) - 1)] != ' ') || //Is there already a letter left to the new input?
-                        (wholeBoard[(listOfCoordinatePairs.get(i).p2)][((listOfCoordinatePairs.get(i).p1) + 1)] != ' ') || //Is there already a letter right to the new input?
-                        (wholeBoard[((listOfCoordinatePairs.get(i).p2) - 1)][listOfCoordinatePairs.get(i).p1] != ' ')); //Is there already a letter above the new input?
+                if ((wholeBoard[((listOfCoordinatePairs.get(i).y))][((listOfCoordinatePairs.get(i).x) + 1)] != ' ') || //Is there already a letter below the new input?
+                        (wholeBoard[((listOfCoordinatePairs.get(i).y) - 1)][(listOfCoordinatePairs.get(i).x)] != ' ') || //Is there already a letter left to the new input?
+                        (wholeBoard[((listOfCoordinatePairs.get(i).y) + 1)][(listOfCoordinatePairs.get(i).x)] != ' ') || //Is there already a letter right to the new input?
+                        (wholeBoard[listOfCoordinatePairs.get(i).y][((listOfCoordinatePairs.get(i).x) - 1)] != ' ')); //Is there already a letter above the new input?
                 else {
                     legal = false;
                     System.out.println("Vähemalt üks täht peab asuma kõrvuti juba laual oleva tähega.");
@@ -71,14 +69,80 @@ public class Game {
 
         //Checks whether the input is in one line
         for (int i = 0; i < listOfCoordinatePairs.size(); i++) {
-            if ((listOfCoordinatePairs.get(0).p1 == listOfCoordinatePairs.get(i).p1) ||
-                (listOfCoordinatePairs.get(0).p2 == listOfCoordinatePairs.get(i).p2) ) {
+            if ((listOfCoordinatePairs.get(0).y == listOfCoordinatePairs.get(i).y) ||
+                (listOfCoordinatePairs.get(0).x == listOfCoordinatePairs.get(i).x) ) {
             } else {
                 legal = false;
                 System.out.println("Sisestatud tähed peavad olema ühes horisontaalses või vertikaalses reas.");
             }
 
         }
+
+        //1. Get new word's first and last coordinates
+
+        if (listOfCoordinatePairs.size() == 1 || ((listOfCoordinatePairs.get(0).x == listOfCoordinatePairs.get(1).x))) { // Word is set horizontally
+            System.out.println("h");
+            int i = 1;
+            CoordinatePairs horizontalWordsLeftCoordinate = new CoordinatePairs((listOfCoordinatePairs.get(0).x), listOfCoordinatePairs.get(0).y);
+
+            //Find the most left tile
+            while (wholeBoard[listOfCoordinatePairs.get(0).y - i][listOfCoordinatePairs.get(0).x] != ' ') {
+                horizontalWordsLeftCoordinate = new CoordinatePairs(listOfCoordinatePairs.get(0).x, listOfCoordinatePairs.get(0).y - i);
+                i++;
+            }
+
+            System.out.println("left" + horizontalWordsLeftCoordinate);
+
+            //Find the most right tile
+            CoordinatePairs lastLetterCoordinates = listOfCoordinatePairs.get(listOfCoordinatePairs.size() - 1);
+            CoordinatePairs horizontalWordsRightCoordinate = new CoordinatePairs(lastLetterCoordinates.x, lastLetterCoordinates.y);
+
+            while (wholeBoard[lastLetterCoordinates.y + i][lastLetterCoordinates.x] != ' ') {
+                horizontalWordsRightCoordinate = new CoordinatePairs(lastLetterCoordinates.x, lastLetterCoordinates.y + i);
+                i++;
+            }
+
+            System.out.println("right" + horizontalWordsRightCoordinate);
+
+        } else { // Word is set vertically
+            System.out.println("v");
+            //Find the uppermost tile
+            int i = 1;
+            CoordinatePairs verticalWordsUpperCoordinate = new CoordinatePairs(listOfCoordinatePairs.get(0).x, listOfCoordinatePairs.get(0).y);
+
+            while (wholeBoard[listOfCoordinatePairs.get(0).y][(listOfCoordinatePairs.get(0).x) - i] != ' ') {
+                verticalWordsUpperCoordinate = new CoordinatePairs((listOfCoordinatePairs.get(0).x - i), (listOfCoordinatePairs.get(0).y));
+                i++;
+            }
+            System.out.println(verticalWordsUpperCoordinate);
+
+            //Find the belowmost tile
+
+            CoordinatePairs lastLetterCoordinates = listOfCoordinatePairs.get(listOfCoordinatePairs.size() - 1);
+            CoordinatePairs verticalWordsLowerCoordinate = new CoordinatePairs(lastLetterCoordinates.x, lastLetterCoordinates.y);
+
+            while (wholeBoard[lastLetterCoordinates.y][lastLetterCoordinates.x + i] != ' ') {
+                verticalWordsLowerCoordinate = new CoordinatePairs(lastLetterCoordinates.x + i, lastLetterCoordinates.y);
+                i++;
+            }
+            System.out.println(verticalWordsLowerCoordinate);
+        }
+
+        //2. Get new word's every coordinate
+        //3. Get coordinates of all the new words that need to be checked
+
+        //Character array to string
+        String toCheck = Arrays.toString(enteredArray.toArray(new Character[enteredArray.size()])).replace("[", "").replace("]", "").replace(", ", "");
+        toCheck = toCheck.toLowerCase();
+        System.out.println(toCheck);
+
+        //Check from dictionary
+        if (db.wordCount(toCheck) == 0) {
+            legal = false;
+            System.out.println("Sõna pole sõnaraamatus.");
+        } else {
+            System.out.println("Sõna on sõnaraamatus.");
+        };
 
         //Input to string
         char[] str = new char[enteredArray.size()];
@@ -102,6 +166,7 @@ public class Game {
 
         return legal;
     }
+
 
 /*
 

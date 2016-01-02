@@ -51,7 +51,13 @@ public class Gui {
 
                 squares[i][j] = new TextField("");
                 squares[i][j].setPrefSize(30, 30);
+                final int finalI = i;
+                final int finalJ = j;
+                squares[i][j].textProperty().addListener((ov, oldValue, newValue) -> {
+                    squares[finalI][finalJ].setText(newValue.toUpperCase());
+                });
                 topGrid.add(squares[i][j], i, j);
+
             }
 
         }
@@ -69,6 +75,7 @@ public class Gui {
                         return change ;
                     }
                 }));
+
             }
         }
 
