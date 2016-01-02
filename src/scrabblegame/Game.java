@@ -1,28 +1,15 @@
 package scrabblegame;
 
-import com.sun.deploy.util.StringUtils;
-import com.sun.xml.internal.fastinfoset.util.CharArray;
-import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextField;
-import javafx.util.Pair;
-
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
-import java.util.stream.Collectors;
 
 public class Game {
 
-    Scanner input = new Scanner(System.in);
     Board board = new Board();
     Bag bag = new Bag();
     Player player = new Player();
-    Word word = new Word();
 
     public Game() {
 
@@ -37,7 +24,7 @@ public class Game {
         return text;
     }
 
-    public boolean printBoard(char[][] wholeBoard) {
+    public boolean makeMoveOnBoard(char[][] wholeBoard) {
 
         char[][] previousBoardState = board.getBoard();
 
@@ -66,21 +53,22 @@ public class Game {
         }
 
         List playersRack = player.getPlayersRack();
+        System.out.println(playersRack);
+        System.out.println(enteredArray);
 
         if (!playersRack.containsAll(enteredArray)) {
             legal = false;
-            System.out.println("sul pole neid tähti");
+            System.out.println("Sul pole neid tähti.");
         }
 
         //Checks whether the input is adjacent to already set letters
         if (!board.isBoardEmpty()) {
             for (int i = 0; i < listOfCoordinatePairs.size(); i++) {
 
-
-                if ((wholeBoard[((listOfCoordinatePairs.get(i).p2) + 1)][((listOfCoordinatePairs.get(i).p1))] != ' ') || //Below
-                        (wholeBoard[(listOfCoordinatePairs.get(i).p2)][((listOfCoordinatePairs.get(i).p1) - 1)] != ' ') || //Left
-                        (wholeBoard[(listOfCoordinatePairs.get(i).p2)][((listOfCoordinatePairs.get(i).p1) + 1)] != ' ') || //Right
-                        (wholeBoard[((listOfCoordinatePairs.get(i).p2) - 1)][listOfCoordinatePairs.get(i).p1] != ' ')); //Above
+                if ((wholeBoard[((listOfCoordinatePairs.get(i).p2) + 1)][((listOfCoordinatePairs.get(i).p1))] != ' ') || //Is there already a letter below the new input?
+                        (wholeBoard[(listOfCoordinatePairs.get(i).p2)][((listOfCoordinatePairs.get(i).p1) - 1)] != ' ') || //Is there already a letter left to the new input?
+                        (wholeBoard[(listOfCoordinatePairs.get(i).p2)][((listOfCoordinatePairs.get(i).p1) + 1)] != ' ') || //Is there already a letter right to the new input?
+                        (wholeBoard[((listOfCoordinatePairs.get(i).p2) - 1)][listOfCoordinatePairs.get(i).p1] != ' ')); //Is there already a letter above the new input?
                 else {
                     legal = false;
                     System.out.println("Vähemalt üks täht peab asuma kõrvuti juba laual oleva tähega.");
@@ -94,7 +82,7 @@ public class Game {
                 (listOfCoordinatePairs.get(0).p2 == listOfCoordinatePairs.get(i).p2) ) {
             } else {
                 legal = false;
-                System.out.println("pole ühes reas");
+                System.out.println("Sisestatud tähed peavad olema ühes horisontaalses või vertikaalses reas.");
             }
 
         }
@@ -107,19 +95,23 @@ public class Game {
             }
         }
 
-       /* //Input to string
+
+        //Input to string
         char[] str = new char[enteredArray.size()];
         for (int i = 0; i < str.length; i++) {
-            str[i]=enteredArray.get(i);
+            str[i]= enteredArray.get(i);
         }
+
         String inputAsString = new String(str);
 
         //Refresh rack
         if (legal == true) {
             player.getTilesRemovedFromRack(inputAsString);
-            player.getAmountOfTilesToAdd();
-            System.out.println(player.getPlayersRack());
-        }*/
+            int amountOfTilesToAdd = player.getAmountOfTilesToAdd();
+            List<Character> charsToAdd = bag.getLetters(amountOfTilesToAdd);
+            player.addLettersToRack(charsToAdd);
+        }
+
 
         return legal;
     }

@@ -37,5 +37,4 @@ public class Player {
         }
         return playersRack;
     }
-
 }
