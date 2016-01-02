@@ -1,5 +1,6 @@
 package scrabblegame;
 
+import com.sun.deploy.util.StringUtils;
 import com.sun.xml.internal.fastinfoset.util.CharArray;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
@@ -53,35 +54,6 @@ public class Game {
             }
         }
 
-        //Checks whether the input is in one line
-        for (int i = 0; i < listOfCoordinatePairs.size(); i++) {
-            if ((listOfCoordinatePairs.get(0).p1 == listOfCoordinatePairs.get(i).p1) || (listOfCoordinatePairs.get(0).p2 == listOfCoordinatePairs.get(i).p2) ) {
-            } else {
-
-                legal = false;
-            }
-            if (legal = false) {
-                System.out.println("Tähed pole ühes reas, aga peaksid olema.");
-            }
-
-        }
-
-        //Checks whether the input is adjacent to already set letters
-        if (!board.isBoardEmpty()) {
-            for (int i = 0; i < listOfCoordinatePairs.size(); i++) {
-                if ((wholeBoard[(listOfCoordinatePairs.get(i).p1) - 1][((listOfCoordinatePairs.get(i).p2) - 1)] != ' ') ||
-                        (wholeBoard[listOfCoordinatePairs.get(i).p1][((listOfCoordinatePairs.get(i).p2) - 1)] != ' ') ||
-                        (wholeBoard[listOfCoordinatePairs.get(i).p1][((listOfCoordinatePairs.get(i).p2) + 1)] != ' ') ||
-                        (wholeBoard[((listOfCoordinatePairs.get(i).p1) + 1)][listOfCoordinatePairs.get(i).p2] != ' ')) ;
-                else {
-                    legal = false;
-                }
-            }
-            if (legal = false) {
-                System.out.println("Vähemalt üks täht peab asuma kõrvuti juba laual oleva tähega.");
-            }
-        }
-
         //Checks if user used only letters from their rack
         List<Character> enteredArray = new ArrayList<>();
 
@@ -96,13 +68,58 @@ public class Game {
         List playersRack = player.getPlayersRack();
 
         if (!playersRack.containsAll(enteredArray)) {
-            System.out.println("Sul ei ole käes tähti, mida tahad lauale panna.");
             legal = false;
+            System.out.println("sul pole neid tähti");
+        }
+
+        //Checks whether the input is adjacent to already set letters
+        if (!board.isBoardEmpty()) {
+            for (int i = 0; i < listOfCoordinatePairs.size(); i++) {
+
+
+                if ((wholeBoard[((listOfCoordinatePairs.get(i).p2) + 1)][((listOfCoordinatePairs.get(i).p1))] != ' ') || //Below
+                        (wholeBoard[(listOfCoordinatePairs.get(i).p2)][((listOfCoordinatePairs.get(i).p1) - 1)] != ' ') || //Left
+                        (wholeBoard[(listOfCoordinatePairs.get(i).p2)][((listOfCoordinatePairs.get(i).p1) + 1)] != ' ') || //Right
+                        (wholeBoard[((listOfCoordinatePairs.get(i).p2) - 1)][listOfCoordinatePairs.get(i).p1] != ' ')); //Above
+                else {
+                    legal = false;
+                    System.out.println("Vähemalt üks täht peab asuma kõrvuti juba laual oleva tähega.");
+                }
+            }
+        }
+
+        //Checks whether the input is in one line
+        for (int i = 0; i < listOfCoordinatePairs.size(); i++) {
+            if ((listOfCoordinatePairs.get(0).p1 == listOfCoordinatePairs.get(i).p1) ||
+                (listOfCoordinatePairs.get(0).p2 == listOfCoordinatePairs.get(i).p2) ) {
+            } else {
+                legal = false;
+                System.out.println("pole ühes reas");
+            }
+
         }
 
         if (legal == true) {
-            board.setBoard(wholeBoard);
+            for (int i = 0; i < 15; i++) {
+                for (int j = 0; j < 15; j++) {
+                    previousBoardState[i][j] = wholeBoard[i][j];
+                }
+            }
         }
+
+       /* //Input to string
+        char[] str = new char[enteredArray.size()];
+        for (int i = 0; i < str.length; i++) {
+            str[i]=enteredArray.get(i);
+        }
+        String inputAsString = new String(str);
+
+        //Refresh rack
+        if (legal == true) {
+            player.getTilesRemovedFromRack(inputAsString);
+            player.getAmountOfTilesToAdd();
+            System.out.println(player.getPlayersRack());
+        }*/
 
         return legal;
     }
@@ -131,4 +148,5 @@ public class Game {
 
     public void run() {
     }
+
 }

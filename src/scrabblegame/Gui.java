@@ -97,7 +97,7 @@ public class Gui {
                 for (int row = 0; row < squares.length; row++) {
                     for (int column = 0; column < squares.length; column++) {
 
-                        if ( squares[row][column].getText().isEmpty()) {
+                        if (squares[row][column].getText().isEmpty()) {
                             wholeBoard[row][column] = ' ';
                         } else {
                             wholeBoard[row][column] = squares[row][column].getText().charAt(0);
@@ -107,10 +107,14 @@ public class Gui {
 
                 game.printBoard(wholeBoard);
 
-                for (int i = 0; i < 15; i++) {
-                    for (int j = 0; j < 15; j++) {
-                        if (!squares[i][j].getText().isEmpty()) {
-                            squares[i][j].setDisable(true);
+                if (game.printBoard(wholeBoard) == true) {
+                    for (int i = 0; i < 15; i++) {
+                        for (int j = 0; j < 15; j++) {
+                            if (!squares[i][j].getText().isEmpty()) {
+                                squares[i][j].setDisable(true);
+                            } else {
+                                squares[i][j].setDisable(false);
+                            }
                         }
                     }
                 }
@@ -124,7 +128,7 @@ public class Gui {
         Label moveLabel = new Label("Punktid selle käigu eest");
         GridPane.setConstraints(moveLabel, 2, 2);
 
-        TextField pointsTotal = new TextField("1000");
+        TextField pointsTotal = new TextField();
         GridPane.setConstraints(pointsTotal, 3, 1);
         pointsTotal.setDisable(true);
 
@@ -144,17 +148,5 @@ public class Gui {
         primaryStage.show();
 
     }
-
-    private void setNewStateOfBoard() {
-    }
-
-    private void disableFilledTiles() {
-
-    }
-
-    public void getWholeBoard() {
-
-    }
-
 
 }
