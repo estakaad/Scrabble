@@ -30,28 +30,21 @@ public class Game {
 
         Boolean legal = true;
 
+        //Get new letters
         ArrayList <CoordinatePairs> listOfCoordinatePairs = new ArrayList<CoordinatePairs>(0);
+        List<Character> enteredArray = new ArrayList<>();
 
         for (int i = 0; i < 15; i++) {
             for (int j = 0; j < 15; j++) {
                 if (previousBoardState[i][j] != wholeBoard[i][j]) {
                     CoordinatePairs pair = new CoordinatePairs(j,i);
                     listOfCoordinatePairs.add(pair);
-                }
-            }
-        }
-
-        //Checks if user used only letters from their rack
-        List<Character> enteredArray = new ArrayList<>();
-
-        for (int i = 0; i < 15; i++) {
-            for (int j = 0; j < 15; j++) {
-                if (wholeBoard[i][j] != ' ') {
                     enteredArray.add(Character.toUpperCase(wholeBoard[i][j]));
                 }
             }
         }
 
+        //Checks if user used only letters from their rack
         List playersRack = player.getPlayersRack();
         System.out.println(playersRack);
         System.out.println(enteredArray);
@@ -87,15 +80,6 @@ public class Game {
 
         }
 
-        if (legal == true) {
-            for (int i = 0; i < 15; i++) {
-                for (int j = 0; j < 15; j++) {
-                    previousBoardState[i][j] = wholeBoard[i][j];
-                }
-            }
-        }
-
-
         //Input to string
         char[] str = new char[enteredArray.size()];
         for (int i = 0; i < str.length; i++) {
@@ -112,6 +96,9 @@ public class Game {
             player.addLettersToRack(charsToAdd);
         }
 
+        if (legal == true) {
+            board.setBoard(wholeBoard);
+        }
 
         return legal;
     }
@@ -139,6 +126,7 @@ public class Game {
 */
 
     public void run() {
+
     }
 
 }
