@@ -17,12 +17,12 @@ import java.util.ArrayList;
 
 public class Gui {
 
-    TextField rack = new TextField();
+    Label rack = new Label();
     Button makeMove = new Button();
     Label totalLabel = new Label();
-    TextField pointsTotal = new TextField();
+    Label pointsTotal = new Label();
     Label moveLabel = new Label();
-    TextField pointsMove = new TextField();
+    Label pointsMove = new Label();
     ArrayList generatedRack = new ArrayList<>();
     Game game = new Game();
     TextField[][] squares = new TextField[15][15];
@@ -87,7 +87,6 @@ public class Gui {
         bottomGrid.setVgap(12);
         bottomGrid.setHgap(12);
 
-        Label rack = new Label();
         GridPane.setConstraints(rack, 1, 1);
         rack.setText(game.getPlayersRackString());
         rack.setDisable(true);
@@ -114,8 +113,8 @@ public class Gui {
 
                 if (game.makeMoveOnBoard(wholeBoard) == true) {
                     rack.setText(game.getPlayersRackString());
+                    pointsMove.setText(String.valueOf(game.getPointsLastMove()));
                     pointsTotal.setText(String.valueOf(game.player.getPlayersPoints()));
-                    pointsMove.setText(String.valueOf(game.pointsLastMove));
 
                     for (int i = 0; i < 15; i++) {
                         for (int j = 0; j < 15; j++) {
@@ -131,23 +130,19 @@ public class Gui {
             }
         });
 
-        Label totalLabel = new Label("Punktid kokku");
-        GridPane.setConstraints(totalLabel, 2, 1);
-
         Label moveLabel = new Label("Punktid selle käigu eest");
-        GridPane.setConstraints(moveLabel, 2, 2);
+        GridPane.setConstraints(moveLabel, 2, 1);
 
-        TextField pointsTotal = new TextField();
+        Label totalLabel = new Label("Punktid kokku");
+        GridPane.setConstraints(totalLabel, 2, 2);
+
+        GridPane.setConstraints(pointsMove, 3, 1);
+        pointsMove.setText(String.valueOf(game.getPointsLastMove()));
+
+        GridPane.setConstraints(pointsTotal, 3, 2);
         pointsTotal.setText(String.valueOf(game.player.getPlayersPoints()));
-        GridPane.setConstraints(pointsTotal, 3, 1);
-        pointsTotal.setDisable(true);
 
-        TextField pointsMove = new TextField();
-        pointsMove.setText(String.valueOf(game.pointsLastMove));
-        GridPane.setConstraints(pointsMove, 3, 2);
-        pointsMove.setDisable(true);
-
-        bottomGrid.getChildren().addAll(rack, makeMove, totalLabel, moveLabel, pointsTotal, pointsMove);
+        bottomGrid.getChildren().addAll(rack, makeMove, moveLabel, totalLabel, pointsMove, pointsTotal);
 
         VBox layout = new VBox();
         layout.setSpacing(25);

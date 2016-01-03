@@ -1,6 +1,5 @@
 package scrabblegame;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -11,12 +10,12 @@ public class Game {
     Bag bag = new Bag();
     Player player = new Player();
     DictionaryDatabase db = new DictionaryDatabase();
-    int pointsLastMove;
+    private int pointsLastMove;
 
     public Game() {
         List generatedRack = bag.getLetters(7);
         player.addLettersToRack(generatedRack);
-        pointsLastMove = 0;
+        setPointsLastMove(0);
     }
 
     public String getPlayersRackString() {
@@ -29,9 +28,14 @@ public class Game {
 
         char[][] previousBoardState = board.getBoard();
 
+        if (Arrays.deepEquals(previousBoardState, wholeBoard)) {
+            return false;
+        }
+
         Boolean legal = true;
 
         ArrayList<CoordinatePairs> listOfCoordinatePairs = pairsOfNewLetterCoordinates(previousBoardState, wholeBoard);
+
         List<Character> enteredArray = getEnteredArray(listOfCoordinatePairs, wholeBoard);
         ArrayList<String> newWords = allTheNewWords(listOfCoordinatePairs, wholeBoard);
 
@@ -53,6 +57,13 @@ public class Game {
             legal = false;
         }
 
+        if (legal == true) {
+            setPointsLastMove(calculatePoints(newWords));
+            player.addPreviousPoints(getPointsLastMove());
+            System.out.println(getPointsLastMove());
+            System.out.println(player.getPlayersPoints());
+        }
+
         //Refresh rack
         if (legal == true) {
             player.getTilesRemovedFromRack(charListToString(enteredArray));
@@ -65,14 +76,18 @@ public class Game {
             board.setBoard(wholeBoard);
         }
 
-        if (legal == true) {
-            pointsLastMove = calculatePoints(newWords);
-            player.addPreviousPoints(pointsLastMove);
-            System.out.println(pointsLastMove);
-            System.out.println(player.getPlayersPoints());
-        }
+
 
         return legal;
+    }
+
+
+    public int getPointsLastMove() {
+        return pointsLastMove;
+    }
+
+    public void setPointsLastMove(int pointsLastMove) {
+        this.pointsLastMove = pointsLastMove;
     }
 
     //Get all the new words
@@ -151,7 +166,7 @@ public class Game {
     }
 
     private int getPointsForLastMove() {
-        return pointsLastMove;
+        return getPointsLastMove();
     }
 
     //Which letters are new on the board?
@@ -343,6 +358,7 @@ public class Game {
 
         return false;
     }
+
 
 /*
     public void run() {
