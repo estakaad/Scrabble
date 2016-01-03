@@ -44,6 +44,9 @@ public class Game {
             legal = false;
         }
 
+
+        getEveryWordsEveryCoordinate(listOfCoordinatePairs, wholeBoard);
+
         //Refresh rack
         if (legal == true) {
             player.getTilesRemovedFromRack(charListToString(enteredArray));
@@ -88,11 +91,42 @@ public class Game {
         return enteredArray;
     }
 
+    private void getEveryWordsEveryCoordinate(ArrayList<CoordinatePairs> listOfCoordinatePairs, char[][] wholeBoard) {
+
+        ArrayList<CoordinatePairs> firstNewWord = new ArrayList<>();
+
+        CoordinatePairs horizontalWordsLeftCoordinate = getFirstLastCoordinates(listOfCoordinatePairs, wholeBoard).get(0);
+        CoordinatePairs horizontalWordsRightCoordinate = getFirstLastCoordinates(listOfCoordinatePairs, wholeBoard).get(1);
+
+        CoordinatePairs verticalWordsUpperCoordinate = getFirstLastCoordinates(listOfCoordinatePairs, wholeBoard).get(0);
+        CoordinatePairs verticalWordsLowerCoordinate = getFirstLastCoordinates(listOfCoordinatePairs, wholeBoard).get(1);
+
+        if ((listOfCoordinatePairs.size() == 1 || ((listOfCoordinatePairs.get(0).x == listOfCoordinatePairs.get(1).x)))) {
+            for (int i = 1; i < horizontalWordsRightCoordinate.y - horizontalWordsLeftCoordinate.y; i++) {
+                CoordinatePairs newPair = new CoordinatePairs(horizontalWordsLeftCoordinate.x, horizontalWordsLeftCoordinate.y + i);
+            }
+        }
+            else {
+            for (int i = 1; i < verticalWordsLowerCoordinate.x - verticalWordsUpperCoordinate.x; i++) {
+                CoordinatePairs newPair = new CoordinatePairs(verticalWordsUpperCoordinate.x + 1, verticalWordsLowerCoordinate.y);
+            }
+        }
+
+        System.out.println(listOfCoordinatePairs);
+
+        /*for (int i = 0; i < listOfCoordinatePairs.size(); i++) {
+           System.out.println(wholeBoard[listOfCoordinatePairs.get(0).x][listOfCoordinatePairs.get(0).y]);
+        }*/
+
+    }
+
     //Get new word's first and last coordinates
-    private void getFirstLastCoordinates(ArrayList<CoordinatePairs> listOfCoordinatePairs, char[][] wholeBoard) {
+    private List<CoordinatePairs> getFirstLastCoordinates(ArrayList<CoordinatePairs> listOfCoordinatePairs, char[][] wholeBoard) {
+
+        ArrayList <CoordinatePairs> firstLastLetterCoordinates = new ArrayList<CoordinatePairs>();
 
         if (listOfCoordinatePairs.size() == 1 || ((listOfCoordinatePairs.get(0).x == listOfCoordinatePairs.get(1).x))) { // Word is set horizontally
-            System.out.println("h");
+
             int i = 1;
             CoordinatePairs horizontalWordsLeftCoordinate = new CoordinatePairs((listOfCoordinatePairs.get(0).x), listOfCoordinatePairs.get(0).y);
 
@@ -101,8 +135,6 @@ public class Game {
                 horizontalWordsLeftCoordinate = new CoordinatePairs(listOfCoordinatePairs.get(0).x, listOfCoordinatePairs.get(0).y - i);
                 i++;
             }
-
-            System.out.println("left" + horizontalWordsLeftCoordinate);
 
             //Find the most right tile
             CoordinatePairs lastLetterCoordinates = listOfCoordinatePairs.get(listOfCoordinatePairs.size() - 1);
@@ -113,10 +145,11 @@ public class Game {
                 i++;
             }
 
-            System.out.println("right" + horizontalWordsRightCoordinate);
+            firstLastLetterCoordinates.add(horizontalWordsLeftCoordinate);
+            firstLastLetterCoordinates.add(horizontalWordsRightCoordinate);
 
         } else { // Word is set vertically
-            System.out.println("v");
+
             //Find the uppermost tile
             int i = 1;
             CoordinatePairs verticalWordsUpperCoordinate = new CoordinatePairs(listOfCoordinatePairs.get(0).x, listOfCoordinatePairs.get(0).y);
@@ -125,7 +158,6 @@ public class Game {
                 verticalWordsUpperCoordinate = new CoordinatePairs((listOfCoordinatePairs.get(0).x - i), (listOfCoordinatePairs.get(0).y));
                 i++;
             }
-            System.out.println(verticalWordsUpperCoordinate);
 
             //Find the belowmost tile
 
@@ -136,8 +168,11 @@ public class Game {
                 verticalWordsLowerCoordinate = new CoordinatePairs(lastLetterCoordinates.x + i, lastLetterCoordinates.y);
                 i++;
             }
-            System.out.println(verticalWordsLowerCoordinate);
+            firstLastLetterCoordinates.add(verticalWordsUpperCoordinate);
+            firstLastLetterCoordinates.add(verticalWordsLowerCoordinate);
         }
+
+        return firstLastLetterCoordinates;
     }
 
     //Checks whether the input is in one line
