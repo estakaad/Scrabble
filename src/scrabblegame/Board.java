@@ -20,7 +20,6 @@ public class Board {
         }
     }
 
-
     //Check if board is empty, return if it is
     public boolean isBoardEmpty() {
 
@@ -43,7 +42,6 @@ public class Board {
         board = newBoard;
     }
 
-
     //Print board
     public void showBoard() {
 
@@ -53,83 +51,5 @@ public class Board {
             }
             System.out.println();
         }
-    }
-
-    public boolean checkNewWordsLegality(String newWord, int[] firstLetterCoordinates, String wordDirection, List playersRack, List nextWordArray) {
-
-        if (isWordAdjacent(firstLetterCoordinates, wordDirection, newWord) == false)
-            return false;
-
-        if (checkRackContainsWord(playersRack, nextWordArray) == false)
-            return false;
-
-       // if (checkWordFromDictionary(newWord) == false)
-          //  return false;
-
-        return true;
-    }
-
-    //Check whether the word consists of at least two characters
-    private boolean checkForTwoLetterLength(String newWord) {
-        if (newWord.length() < 2) {
-            System.out.println("Sõna on liiga lühike");
-            return false;
-        }
-        return true;
-    }
-
-    //Check whether user's word is comprised of the letters on the rack
-    private boolean checkRackContainsWord(List playersRack, List nextWordArray) {
-        if (!playersRack.containsAll(nextWordArray)) {
-            System.out.println("Sinu käes olevatest tähtedest ei saa seda sõna moodustada.");
-            return false;
-        }
-        return true;
-    }
-
-    //Is the input adjacent to an already set word.
-    public boolean isWordAdjacent(int[] firstCoordinates, String directionOfInput, String inputWord) {
-
-        if (!isBoardEmpty()) {
-            if (directionOfInput.equals("H")) {
-                for (int i = 0; i < inputWord.length(); i++) {
-                    if ((board[(firstCoordinates[0] - 1)][(firstCoordinates[1] + i)] != '?') ||
-                            (board[(firstCoordinates[0] + 1)][(firstCoordinates[1] + i)] != '?') ||
-                            (board[firstCoordinates[0]][(firstCoordinates[1] + i - 1)] != '?') ||
-                            (board[firstCoordinates[0]][(firstCoordinates[1] + i + 1)] != '?')
-                            ) {
-                        return true; // Returns true, if there is at least one letter adjacent to a letter on the board
-                    }
-                }
-            } else {
-                for (int j = 0; j < inputWord.length(); j++) {
-
-                    if ((board[(firstCoordinates[0] + j - 1)][firstCoordinates[1]] != '?') ||
-                            (board[(firstCoordinates[0] + j + 1)][firstCoordinates[1]] != '?') ||
-                            (board[(firstCoordinates[0] + j)][(firstCoordinates[1] - 1)] != '?') ||
-                            (board[(firstCoordinates[0] + j)][(firstCoordinates[1] + 1)] != '?')
-                            ) {
-                        return true; // Returns true, if there is at least one letter adjacent to a letter on the board
-                    }
-                }
-            }
-            System.out.println("Ürita uuesti, sest sõnas peab olema vähemalt üks täht, mis on lauale pandud tähega kõrvuti.");
-            return false;
-        }
-        return true;
-    }
-
-    public boolean isWordInOneLine(int lastMoveBoard[][]) {
-        for (int i = 0; i < 15; i++) {
-            for (int j = 0; j < 15; j++) {
-                if (lastMoveBoard[i][j] != ' ') {
-
-                }
-                return false;
-            }
-        }
-
-        return true;
-
     }
 }
