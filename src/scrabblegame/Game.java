@@ -44,8 +44,7 @@ public class Game {
             legal = false;
         }
 
-
-        getEveryWordsEveryCoordinate(listOfCoordinatePairs, wholeBoard);
+        getFirstLastCoordinates(listOfCoordinatePairs, wholeBoard);
 
         //Refresh rack
         if (legal == true) {
@@ -91,37 +90,8 @@ public class Game {
         return enteredArray;
     }
 
-    private void getEveryWordsEveryCoordinate(ArrayList<CoordinatePairs> listOfCoordinatePairs, char[][] wholeBoard) {
-
-        ArrayList<CoordinatePairs> firstNewWord = new ArrayList<>();
-
-        CoordinatePairs horizontalWordsLeftCoordinate = getFirstLastCoordinates(listOfCoordinatePairs, wholeBoard).get(0);
-        CoordinatePairs horizontalWordsRightCoordinate = getFirstLastCoordinates(listOfCoordinatePairs, wholeBoard).get(1);
-
-        CoordinatePairs verticalWordsUpperCoordinate = getFirstLastCoordinates(listOfCoordinatePairs, wholeBoard).get(0);
-        CoordinatePairs verticalWordsLowerCoordinate = getFirstLastCoordinates(listOfCoordinatePairs, wholeBoard).get(1);
-
-        if ((listOfCoordinatePairs.size() == 1 || ((listOfCoordinatePairs.get(0).x == listOfCoordinatePairs.get(1).x)))) {
-            for (int i = 1; i < horizontalWordsRightCoordinate.y - horizontalWordsLeftCoordinate.y; i++) {
-                CoordinatePairs newPair = new CoordinatePairs(horizontalWordsLeftCoordinate.x, horizontalWordsLeftCoordinate.y + i);
-            }
-        }
-            else {
-            for (int i = 1; i < verticalWordsLowerCoordinate.x - verticalWordsUpperCoordinate.x; i++) {
-                CoordinatePairs newPair = new CoordinatePairs(verticalWordsUpperCoordinate.x + 1, verticalWordsLowerCoordinate.y);
-            }
-        }
-
-        System.out.println(listOfCoordinatePairs);
-
-        /*for (int i = 0; i < listOfCoordinatePairs.size(); i++) {
-           System.out.println(wholeBoard[listOfCoordinatePairs.get(0).x][listOfCoordinatePairs.get(0).y]);
-        }*/
-
-    }
-
     //Get new word's first and last coordinates
-    private List<CoordinatePairs> getFirstLastCoordinates(ArrayList<CoordinatePairs> listOfCoordinatePairs, char[][] wholeBoard) {
+    private void getFirstLastCoordinates(ArrayList<CoordinatePairs> listOfCoordinatePairs, char[][] wholeBoard) {
 
         ArrayList <CoordinatePairs> firstLastLetterCoordinates = new ArrayList<CoordinatePairs>();
 
@@ -172,7 +142,18 @@ public class Game {
             firstLastLetterCoordinates.add(verticalWordsLowerCoordinate);
         }
 
-        return firstLastLetterCoordinates;
+        String wordToLookUp = "";
+        if (listOfCoordinatePairs.size() == 1 || ((listOfCoordinatePairs.get(0).x == listOfCoordinatePairs.get(1).x))) {
+            for (int i = 0; i < firstLastLetterCoordinates.get(1).y - firstLastLetterCoordinates.get(0).y + 1; i++) {
+                wordToLookUp += wholeBoard[firstLastLetterCoordinates.get(0).y + i][firstLastLetterCoordinates.get(0).x];
+            }
+        } else {
+            for (int i = 0; i < firstLastLetterCoordinates.get(1).x - firstLastLetterCoordinates.get(0).x + 1; i++) {
+                wordToLookUp += wholeBoard[firstLastLetterCoordinates.get(0).y][firstLastLetterCoordinates.get(0).x + i];
+            }
+        }
+        System.out.println(wordToLookUp);
+
     }
 
     //Checks whether the input is in one line
