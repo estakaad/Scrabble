@@ -44,7 +44,7 @@ public class Game {
             legal = false;
         }
 
-        getFirstLastCoordinates(listOfCoordinatePairs, wholeBoard);
+        getAllWordsToCheck(listOfCoordinatePairs, wholeBoard);
 
         //Refresh rack
         if (legal == true) {
@@ -59,6 +59,64 @@ public class Game {
         }
 
         return legal;
+    }
+
+
+    //Get every word that needs to be checked from the dictionary
+    private void getAllWordsToCheck(ArrayList<CoordinatePairs> listOfCoordinatePairs, char[][] wholeBoard) {
+
+        ArrayList <CoordinatePairs> firstLastLetterCoordinates = new ArrayList<CoordinatePairs>();
+
+        if (listOfCoordinatePairs.size() == 1 || ((listOfCoordinatePairs.get(0).x == listOfCoordinatePairs.get(1).x))) { // Word is set horizontally
+
+            firstLastLetterCoordinates.add(getLeftLetterCoordinates(listOfCoordinatePairs, wholeBoard));
+            firstLastLetterCoordinates.add(getRightLetterCoordinates(listOfCoordinatePairs, wholeBoard));
+
+        } else { // Word is set vertically
+
+            firstLastLetterCoordinates.add(getUpperLetterCoordinates(listOfCoordinatePairs, wholeBoard));
+            firstLastLetterCoordinates.add(getLowerLetterCoordinates(listOfCoordinatePairs, wholeBoard));
+        }
+
+        System.out.println(getWordToCheck(firstLastLetterCoordinates, wholeBoard));
+
+        System.out.println(listOfCoordinatePairs);
+
+        if (listOfCoordinatePairs.size() == 1 || ((listOfCoordinatePairs.get(0).x == listOfCoordinatePairs.get(1).x))) {
+            for (int i = 0; i < listOfCoordinatePairs.size(); i++) {
+                ArrayList<CoordinatePairs> forVerticalCoordinates = new ArrayList<CoordinatePairs>();
+
+                forVerticalCoordinates.add(listOfCoordinatePairs.get(i));
+
+                ArrayList<CoordinatePairs> verCoordinatesToCheck = new ArrayList<CoordinatePairs>();
+
+                verCoordinatesToCheck.add(getUpperLetterCoordinates(forVerticalCoordinates, wholeBoard));
+                System.out.println(getUpperLetterCoordinates(forVerticalCoordinates, wholeBoard));
+
+                verCoordinatesToCheck.add(getLowerLetterCoordinates(forVerticalCoordinates, wholeBoard));
+                System.out.println(getLowerLetterCoordinates(forVerticalCoordinates, wholeBoard));
+
+                System.out.println(getWordToCheck(verCoordinatesToCheck, wholeBoard));
+
+            }
+
+        } else {
+            for (int i = 0; i < listOfCoordinatePairs.size(); i++) {
+                ArrayList<CoordinatePairs> forHorizontalCoordinates = new ArrayList<CoordinatePairs>();
+
+                forHorizontalCoordinates.add(listOfCoordinatePairs.get(i));
+
+                ArrayList<CoordinatePairs> horCoordinatesToCheck = new ArrayList<CoordinatePairs>();
+
+                horCoordinatesToCheck.add(getLeftLetterCoordinates(forHorizontalCoordinates, wholeBoard));
+                System.out.println(getLeftLetterCoordinates(forHorizontalCoordinates, wholeBoard));
+
+                horCoordinatesToCheck.add(getRightLetterCoordinates(forHorizontalCoordinates, wholeBoard));
+                System.out.println(getRightLetterCoordinates(forHorizontalCoordinates, wholeBoard));
+
+                System.out.println(getWordToCheck(horCoordinatesToCheck, wholeBoard));
+            }
+        }
     }
 
     //Which letters are new on the board?
@@ -88,47 +146,6 @@ public class Game {
         }
 
         return enteredArray;
-    }
-
-    //Get every word that needs to be checked from the dictionary
-    private void getFirstLastCoordinates(ArrayList<CoordinatePairs> listOfCoordinatePairs, char[][] wholeBoard) {
-
-        ArrayList <CoordinatePairs> firstLastLetterCoordinates = new ArrayList<CoordinatePairs>();
-
-        if (listOfCoordinatePairs.size() == 1 || ((listOfCoordinatePairs.get(0).x == listOfCoordinatePairs.get(1).x))) { // Word is set horizontally
-
-            getLeftLetterCoordinates(listOfCoordinatePairs, wholeBoard);
-            getRightLetterCoordinates(listOfCoordinatePairs, wholeBoard);
-
-            firstLastLetterCoordinates.add(getLeftLetterCoordinates(listOfCoordinatePairs, wholeBoard));
-            firstLastLetterCoordinates.add(getRightLetterCoordinates(listOfCoordinatePairs, wholeBoard));
-
-        } else { // Word is set vertically
-
-            getUpperLetterCoordinates(listOfCoordinatePairs, wholeBoard);
-            getLowerLetterCoordinates(listOfCoordinatePairs, wholeBoard);
-
-            firstLastLetterCoordinates.add(getUpperLetterCoordinates(listOfCoordinatePairs, wholeBoard));
-            firstLastLetterCoordinates.add(getLowerLetterCoordinates(listOfCoordinatePairs, wholeBoard));
-        }
-
-        String wordToLookUp = "";
-
-        if (listOfCoordinatePairs.size() == 1 || ((listOfCoordinatePairs.get(0).x == listOfCoordinatePairs.get(1).x))) {
-            for (int i = 0; i < firstLastLetterCoordinates.get(1).y - firstLastLetterCoordinates.get(0).y + 1; i++) {
-                wordToLookUp += wholeBoard[firstLastLetterCoordinates.get(0).y + i][firstLastLetterCoordinates.get(0).x];
-            }
-        } else {
-            for (int i = 0; i < firstLastLetterCoordinates.get(1).x - firstLastLetterCoordinates.get(0).x + 1; i++) {
-                wordToLookUp += wholeBoard[firstLastLetterCoordinates.get(0).y][firstLastLetterCoordinates.get(0).x + i];
-            }
-        }
-
-        System.out.println(wordToLookUp.toLowerCase());
-
-        for (int i = 0; i < wordToLookUp.length(); i++) {
-        }
-
     }
 
     //Find the most left tile
@@ -184,6 +201,25 @@ public class Game {
         }
 
         return verticalWordsLowerCoordinate;
+    }
+
+    //Create the string, when the first and last coordinates of the word are known
+    private String getWordToCheck(List<CoordinatePairs> firstLastLetterCoordinates, char[][] wholeBoard) {
+        String wordToLookUp = "";
+
+        if (firstLastLetterCoordinates.size() == 1 || ((firstLastLetterCoordinates.get(0).x == firstLastLetterCoordinates.get(1).x))) {
+            for (int i = 0; i < firstLastLetterCoordinates.get(1).y - firstLastLetterCoordinates.get(0).y + 1; i++) {
+                wordToLookUp += wholeBoard[firstLastLetterCoordinates.get(0).y + i][firstLastLetterCoordinates.get(0).x];
+            }
+        } else {
+            for (int i = 0; i < firstLastLetterCoordinates.get(1).x - firstLastLetterCoordinates.get(0).x + 1; i++) {
+                wordToLookUp += wholeBoard[firstLastLetterCoordinates.get(0).y][firstLastLetterCoordinates.get(0).x + i];
+            }
+        }
+
+        wordToLookUp = wordToLookUp.toLowerCase();
+
+        return wordToLookUp;
     }
 
     //Checks whether the input is in one line
