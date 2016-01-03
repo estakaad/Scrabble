@@ -53,7 +53,7 @@ public class Bag {
     }
 
     //Get value for letters
-    public void getValue(String wordToValue) {
+    public int getValue(String wordToValue) {
 
         int sumValue = 0;
         for (int i = 0; i < wordToValue.length(); i++) {
@@ -63,6 +63,7 @@ public class Bag {
             sumValue += valueOfLetter;
         }
         System.out.println("Need tähed annavad kokku " + sumValue + " punkti.");
+        return sumValue;
     }
 
     //Get random letter tiles from the bag and generate an array of them.

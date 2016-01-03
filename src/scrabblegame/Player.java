@@ -6,6 +6,19 @@ import java.util.List;
 public class Player {
 
     private List<Character> playersRack = new ArrayList<Character>();
+    private int playersPoints;
+
+    public Player() {
+        playersPoints = 0;
+    }
+
+    public void addPreviousPoints(int lastMovesPoints) {
+        playersPoints += lastMovesPoints;
+    }
+
+    public int getPlayersPoints() {
+        return playersPoints;
+    }
 
     public List getPlayersRack() {
         return playersRack;

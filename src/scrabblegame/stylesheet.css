@@ -1,3 +1,3 @@
-.text-field:readonly {
-    -fx-background-color: transparent;
+.label {
+    -fx-font-weight: bold;
 }

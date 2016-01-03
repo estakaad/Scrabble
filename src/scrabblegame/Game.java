@@ -11,10 +11,12 @@ public class Game {
     Bag bag = new Bag();
     Player player = new Player();
     DictionaryDatabase db = new DictionaryDatabase();
+    int pointsLastMove;
 
     public Game() {
         List generatedRack = bag.getLetters(7);
         player.addLettersToRack(generatedRack);
+        pointsLastMove = 0;
     }
 
     public String getPlayersRackString() {
@@ -31,6 +33,9 @@ public class Game {
 
         ArrayList<CoordinatePairs> listOfCoordinatePairs = pairsOfNewLetterCoordinates(previousBoardState, wholeBoard);
         List<Character> enteredArray = getEnteredArray(listOfCoordinatePairs, wholeBoard);
+        ArrayList<String> newWords = allTheNewWords(listOfCoordinatePairs, wholeBoard);
+
+        System.out.println(newWords);
 
         if (isInOneLine(listOfCoordinatePairs) == false) {
             legal = false;
@@ -44,7 +49,7 @@ public class Game {
             legal = false;
         }
 
-        if (getAllWordsToCheck(listOfCoordinatePairs, wholeBoard) == false) {
+        if (checkWordsFromDict(newWords) == false) {
             legal = false;
         }
 
@@ -60,13 +65,20 @@ public class Game {
             board.setBoard(wholeBoard);
         }
 
+        if (legal == true) {
+            pointsLastMove = calculatePoints(newWords);
+            player.addPreviousPoints(pointsLastMove);
+            System.out.println(pointsLastMove);
+            System.out.println(player.getPlayersPoints());
+        }
+
         return legal;
     }
 
+    //Get all the new words
+    private ArrayList<String> allTheNewWords(ArrayList<CoordinatePairs> listOfCoordinatePairs, char[][] wholeBoard) {
 
-    //Get all the new words and check whether they're in the dictionary
-    private boolean getAllWordsToCheck(ArrayList<CoordinatePairs> listOfCoordinatePairs, char[][] wholeBoard) {
-
+        ArrayList<String> newWords = new ArrayList<>();
         ArrayList <CoordinatePairs> firstLastLetterCoordinates = new ArrayList<CoordinatePairs>();
 
         if (listOfCoordinatePairs.size() == 1 || ((listOfCoordinatePairs.get(0).x == listOfCoordinatePairs.get(1).x))) { // Word is set horizontally
@@ -80,48 +92,66 @@ public class Game {
             firstLastLetterCoordinates.add(getLowerLetterCoordinates(listOfCoordinatePairs, wholeBoard));
         }
 
-        if (checkIfWordIsARealWord(getWordToCheck(firstLastLetterCoordinates, wholeBoard)) == false) {
-            return false;
-        };
+        newWords.add(getWordToCheck(firstLastLetterCoordinates, wholeBoard));
 
         if (listOfCoordinatePairs.size() == 1 || ((listOfCoordinatePairs.get(0).x == listOfCoordinatePairs.get(1).x))) {
             for (int i = 0; i < listOfCoordinatePairs.size(); i++) {
                 ArrayList<CoordinatePairs> forVerticalCoordinates = new ArrayList<CoordinatePairs>();
-
                 forVerticalCoordinates.add(listOfCoordinatePairs.get(i));
-
                 ArrayList<CoordinatePairs> verCoordinatesToCheck = new ArrayList<CoordinatePairs>();
 
                 verCoordinatesToCheck.add(getUpperLetterCoordinates(forVerticalCoordinates, wholeBoard));
-
                 verCoordinatesToCheck.add(getLowerLetterCoordinates(forVerticalCoordinates, wholeBoard));
 
-                if (checkIfWordIsARealWord(getWordToCheck(verCoordinatesToCheck, wholeBoard)) == false) {
-                    return false;
-                };
+                newWords.add(getWordToCheck(verCoordinatesToCheck, wholeBoard));
 
             }
 
         } else {
             for (int i = 0; i < listOfCoordinatePairs.size(); i++) {
                 ArrayList<CoordinatePairs> forHorizontalCoordinates = new ArrayList<CoordinatePairs>();
-
                 forHorizontalCoordinates.add(listOfCoordinatePairs.get(i));
-
                 ArrayList<CoordinatePairs> horCoordinatesToCheck = new ArrayList<CoordinatePairs>();
 
                 horCoordinatesToCheck.add(getLeftLetterCoordinates(forHorizontalCoordinates, wholeBoard));
-
                 horCoordinatesToCheck.add(getRightLetterCoordinates(forHorizontalCoordinates, wholeBoard));
 
-                if (checkIfWordIsARealWord(getWordToCheck(horCoordinatesToCheck, wholeBoard)) == false) {
-                    return false;
-                };
+                newWords.add(getWordToCheck(horCoordinatesToCheck, wholeBoard));
 
             }
         }
 
+        return newWords;
+    }
+
+    //Check whether new words exist in the dictionary or consist of only one word
+    private boolean checkWordsFromDict(ArrayList<String> newWords) {
+
+        for (int i = 0; i < newWords.size(); i++) {
+            if (checkIfWordIsARealWord(newWords.get(i)) == false) {
+                return false;
+            }
+        }
+
         return true;
+    }
+
+    private int calculatePoints(ArrayList<String> newWords) {
+
+        int points = 0;
+
+        for (int i = 0; i < newWords.size(); i++) {
+            if (newWords.get(i).length() > 1) {
+                points = bag.getValue((String) newWords.get(i));
+                System.out.println(points);
+            }
+        }
+
+        return points;
+    }
+
+    private int getPointsForLastMove() {
+        return pointsLastMove;
     }
 
     //Which letters are new on the board?
@@ -301,6 +331,7 @@ public class Game {
 
     //Check whether word is in the dictionary (unless it consists of only one letter)
     private boolean checkIfWordIsARealWord(String wordToCheck) {
+
         System.out.println("sõna" + wordToCheck);
 
         if (wordToCheck.length() == 1) {

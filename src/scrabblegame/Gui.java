@@ -87,7 +87,7 @@ public class Gui {
         bottomGrid.setVgap(12);
         bottomGrid.setHgap(12);
 
-        TextField rack = new TextField();
+        Label rack = new Label();
         GridPane.setConstraints(rack, 1, 1);
         rack.setText(game.getPlayersRackString());
         rack.setDisable(true);
@@ -114,6 +114,8 @@ public class Gui {
 
                 if (game.makeMoveOnBoard(wholeBoard) == true) {
                     rack.setText(game.getPlayersRackString());
+                    pointsTotal.setText(String.valueOf(game.player.getPlayersPoints()));
+                    pointsMove.setText(String.valueOf(game.pointsLastMove));
 
                     for (int i = 0; i < 15; i++) {
                         for (int j = 0; j < 15; j++) {
@@ -136,10 +138,12 @@ public class Gui {
         GridPane.setConstraints(moveLabel, 2, 2);
 
         TextField pointsTotal = new TextField();
+        pointsTotal.setText(String.valueOf(game.player.getPlayersPoints()));
         GridPane.setConstraints(pointsTotal, 3, 1);
         pointsTotal.setDisable(true);
 
         TextField pointsMove = new TextField();
+        pointsMove.setText(String.valueOf(game.pointsLastMove));
         GridPane.setConstraints(pointsMove, 3, 2);
         pointsMove.setDisable(true);
 
@@ -150,7 +154,7 @@ public class Gui {
         layout.getChildren().addAll(heading, topGrid, bottomGrid);
 
         Scene scene = new Scene(layout, 800, 800);
-        //scene.getStylesheets().add("scrabblegame/stylesheet.css");
+        scene.getStylesheets().add("scrabblegame/stylesheet.css");
         primaryStage.setScene(scene);
         primaryStage.show();
 
