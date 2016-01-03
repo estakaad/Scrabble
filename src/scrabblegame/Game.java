@@ -203,7 +203,7 @@ public class Game {
         int i = 1;
         CoordinatePairs horizontalWordsLeftCoordinate = new CoordinatePairs((listOfCoordinatePairs.get(0).x), listOfCoordinatePairs.get(0).y);
 
-        while (wholeBoard[listOfCoordinatePairs.get(0).y - i][listOfCoordinatePairs.get(0).x] != ' ') {
+        while ((listOfCoordinatePairs.get(0).y - 1) >= 0 && wholeBoard[listOfCoordinatePairs.get(0).y - i][listOfCoordinatePairs.get(0).x] != ' ') {
             horizontalWordsLeftCoordinate = new CoordinatePairs(listOfCoordinatePairs.get(0).x, listOfCoordinatePairs.get(0).y - i);
             i++;
         }
@@ -216,7 +216,7 @@ public class Game {
         CoordinatePairs lastLetterCoordinates = listOfCoordinatePairs.get(listOfCoordinatePairs.size() - 1);
         CoordinatePairs horizontalWordsRightCoordinate = new CoordinatePairs(lastLetterCoordinates.x, lastLetterCoordinates.y);
 
-        while (wholeBoard[lastLetterCoordinates.y + i][lastLetterCoordinates.x] != ' ') {
+        while ((lastLetterCoordinates.y + i) < 15 && wholeBoard[lastLetterCoordinates.y + i][lastLetterCoordinates.x] != ' ') {
             horizontalWordsRightCoordinate = new CoordinatePairs(lastLetterCoordinates.x, lastLetterCoordinates.y + i);
             i++;
         }
@@ -229,7 +229,7 @@ public class Game {
         int i = 1;
         CoordinatePairs verticalWordsUpperCoordinate = new CoordinatePairs(listOfCoordinatePairs.get(0).x, listOfCoordinatePairs.get(0).y);
 
-        while (wholeBoard[listOfCoordinatePairs.get(0).y][(listOfCoordinatePairs.get(0).x) - i] != ' ') {
+        while ((listOfCoordinatePairs.get(0).x - i) > 0 && wholeBoard[listOfCoordinatePairs.get(0).y][listOfCoordinatePairs.get(0).x - i] != ' ') {
             verticalWordsUpperCoordinate = new CoordinatePairs((listOfCoordinatePairs.get(0).x - i), (listOfCoordinatePairs.get(0).y));
             i++;
         }
@@ -245,7 +245,7 @@ public class Game {
         CoordinatePairs lastLetterCoordinates = listOfCoordinatePairs.get(listOfCoordinatePairs.size() - 1);
         CoordinatePairs verticalWordsLowerCoordinate = new CoordinatePairs(lastLetterCoordinates.x, lastLetterCoordinates.y);
 
-        while (wholeBoard[lastLetterCoordinates.y][lastLetterCoordinates.x + i] != ' ') {
+        while ((lastLetterCoordinates.x + i) < 15 && wholeBoard[lastLetterCoordinates.y][lastLetterCoordinates.x + i] != ' ') {
             verticalWordsLowerCoordinate = new CoordinatePairs(lastLetterCoordinates.x + i, lastLetterCoordinates.y);
             i++;
         }
