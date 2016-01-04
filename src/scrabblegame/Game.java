@@ -40,10 +40,17 @@ public class Game {
 
         ArrayList<CoordinatePairs> listOfCoordinatePairs = pairsOfNewLetterCoordinates(previousBoardState, wholeBoard);
 
+        if (listOfCoordinatePairs.size() < 2 && board.isBoardEmpty() == true) {
+            errorMessages.add("Esimese käigu ajal tuleb lauale panna vähemalt kaks tähte.");
+            return false;
+        }
+
         List<Character> enteredArray = getEnteredArray(listOfCoordinatePairs, wholeBoard);
         ArrayList<String> newWords = allTheNewWords(listOfCoordinatePairs, wholeBoard);
 
         System.out.println(newWords);
+
+
 
         if (isInOneLine(listOfCoordinatePairs) == false) {
             errorMessages.add("Sõna peab olema ühes reas või veerus.");
@@ -110,6 +117,7 @@ public class Game {
         return errors;
 
     }
+
 
     //Get all the new words
     private ArrayList<String> allTheNewWords(ArrayList<CoordinatePairs> listOfCoordinatePairs, char[][] wholeBoard) {
