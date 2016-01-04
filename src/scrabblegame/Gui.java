@@ -24,7 +24,9 @@ public class Gui {
     Label moveLabel = new Label();
     Label pointsMove = new Label();
     ArrayList generatedRack = new ArrayList<>();
+    VBox mostBottom = new VBox();
     Game game = new Game();
+    Label errors = new Label();
     TextField[][] squares = new TextField[15][15];
 
     public void createScene() {
@@ -117,6 +119,7 @@ public class Gui {
                     rack.setText(game.getPlayersRackString());
                     pointsMove.setText(String.valueOf(game.getPointsLastMove()));
                     pointsTotal.setText(String.valueOf(game.player.getPlayersPoints()));
+                    errors.setText("");
 
                     for (int i = 0; i < 15; i++) {
                         for (int j = 0; j < 15; j++) {
@@ -127,6 +130,8 @@ public class Gui {
                             }
                         }
                     }
+                } else {
+                    errors.setText(game.getMessagesToStrings());
                 }
 
             }
@@ -146,11 +151,16 @@ public class Gui {
 
         bottomGrid.getChildren().addAll(rack, makeMove, moveLabel, totalLabel, pointsMove, pointsTotal);
 
+        mostBottom.setAlignment(Pos.CENTER);
+        mostBottom.setId("errors");
+        mostBottom.getChildren().add(errors);
+        mostBottom.setPadding(new Insets(10, 30, 10, 30));
+
         VBox layout = new VBox();
         layout.setSpacing(15);
-        layout.getChildren().addAll(heading, topGrid, bottomGrid);
+        layout.getChildren().addAll(heading, topGrid, bottomGrid, mostBottom);
 
-        Scene scene = new Scene(layout, 750, 900);
+        Scene scene = new Scene(layout, 700, 1200);
         scene.getStylesheets().add("scrabblegame/stylesheet.css");
         primaryStage.setScene(scene);
         primaryStage.show();

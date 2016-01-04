@@ -10,12 +10,14 @@ public class Game {
     Bag bag = new Bag();
     Player player = new Player();
     DictionaryDatabase db = new DictionaryDatabase();
+    private ArrayList<String> errorMessages = new ArrayList<String>();
     private int pointsLastMove;
 
     public Game() {
         List generatedRack = bag.getLetters(7);
         player.addLettersToRack(generatedRack);
         setPointsLastMove(0);
+
     }
 
     public String getPlayersRackString() {
@@ -25,6 +27,8 @@ public class Game {
     }
 
     public boolean makeMoveOnBoard(char[][] wholeBoard) {
+
+        errorMessages.clear();
 
         char[][] previousBoardState = board.getBoard();
 
@@ -42,18 +46,22 @@ public class Game {
         System.out.println(newWords);
 
         if (isInOneLine(listOfCoordinatePairs) == false) {
+            errorMessages.add("Sõna peab olema ühes reas või veerus.");
             legal = false;
         };
 
         if (isInputComprisedOfRack(enteredArray) == false) {
+            errorMessages.add("Sul pole neid tähti.");
             legal = false;
         }
 
         if (isAdjacent(wholeBoard, listOfCoordinatePairs) == false) {
+            errorMessages.add("Vähemalt üks täht peab asuma kõrvuti juba laual oleva tähega.");
             legal = false;
         }
 
         if (checkWordsFromDict(newWords) == false) {
+            errorMessages.add("Sellist sõna ei ole sõnaraamatus.");
             legal = false;
         }
 
@@ -88,6 +96,19 @@ public class Game {
 
     public void setPointsLastMove(int pointsLastMove) {
         this.pointsLastMove = pointsLastMove;
+    }
+
+
+    public String getMessagesToStrings() {
+
+        String errors = "";
+
+        for (int i = 0; i < errorMessages.size(); i++) {
+            errors += errorMessages.get(i) + System.lineSeparator();
+        }
+
+        return errors;
+
     }
 
     //Get all the new words
@@ -291,7 +312,6 @@ public class Game {
         List playersRack = player.getPlayersRack();
 
         if (!playersRack.containsAll(enteredArray)) {
-            System.out.println("Sul pole neid tähti.");
             return false;
         }
 
@@ -309,7 +329,6 @@ public class Game {
                         (wholeBoard[((listOfCoordinatePairs.get(i).y) + 1)][(listOfCoordinatePairs.get(i).x)] != ' ') || //Is there already a letter right to the new input?
                         (wholeBoard[listOfCoordinatePairs.get(i).y][((listOfCoordinatePairs.get(i).x) - 1)] != ' ')); //Is there already a letter above the new input?
                 else {
-                    System.out.println("Vähemalt üks täht peab asuma kõrvuti juba laual oleva tähega.");
                     return false;
                 }
             }
@@ -359,10 +378,5 @@ public class Game {
         return false;
     }
 
-
-/*
-    public void run() {
-
-    }*/
 
 }
