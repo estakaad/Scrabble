@@ -17,7 +17,6 @@ public class DictionaryDatabase {
         } catch (Exception e) {
             System.err.println(e.getClass().getName() + ": " + e.getMessage());
         }
-        System.out.println("Opened database successfully.");
     }
 
     public String makeQuery(String usersInput) {

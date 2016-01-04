@@ -48,10 +48,6 @@ public class Game {
         List<Character> enteredArray = getEnteredArray(listOfCoordinatePairs, wholeBoard);
         ArrayList<String> newWords = allTheNewWords(listOfCoordinatePairs, wholeBoard);
 
-        System.out.println(newWords);
-
-
-
         if (isInOneLine(listOfCoordinatePairs) == false) {
             errorMessages.add("Sõna peab olema ühes reas või veerus.");
             legal = false;
@@ -75,8 +71,6 @@ public class Game {
         if (legal == true) {
             setPointsLastMove(calculatePoints(newWords));
             player.addPreviousPoints(getPointsLastMove());
-            System.out.println(getPointsLastMove());
-            System.out.println(player.getPlayersPoints());
         }
 
         //Refresh rack
@@ -307,7 +301,6 @@ public class Game {
             if ((listOfCoordinatePairs.get(0).y == listOfCoordinatePairs.get(i).y) ||
                     (listOfCoordinatePairs.get(0).x == listOfCoordinatePairs.get(i).x) ) {
             } else {
-                System.out.println("Sisestatud tähed peavad olema ühes horisontaalses või vertikaalses reas.");
                 return false;
             }
         }
@@ -361,10 +354,8 @@ public class Game {
     //Check from dictionary
     private boolean checkFromDict(String toCheck) {
         if (db.wordCount(toCheck.toLowerCase()) == 1) {
-            System.out.println("Sõna on sõnaraamatus.");
 
         } else {
-            System.out.println("Sõna pole sõnaraamatus.");
             return false;
         };
 
@@ -373,8 +364,6 @@ public class Game {
 
     //Check whether word is in the dictionary (unless it consists of only one letter)
     private boolean checkIfWordIsARealWord(String wordToCheck) {
-
-        System.out.println("sõna" + wordToCheck);
 
         if (wordToCheck.length() == 1) {
             return true;

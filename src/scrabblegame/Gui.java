@@ -11,6 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
@@ -32,6 +33,7 @@ public class Gui {
     public void createScene() {
 
         Stage primaryStage = new Stage();
+        primaryStage.centerOnScreen();
         primaryStage.setTitle("Scrabble");
         System.setProperty("prism.text", "t2k");
 
@@ -39,7 +41,7 @@ public class Gui {
         Label topHeading = new Label("Scrabble");
         heading.getChildren().add(topHeading);
         heading.setAlignment(Pos.CENTER);
-        heading.setPadding(new Insets (30, 10, 10, 10));
+        heading.setPadding(new Insets (15, 10, 5, 10));
 
         GridPane topGrid = new GridPane();
         topGrid.setId("board");
@@ -86,7 +88,7 @@ public class Gui {
 
         bottomGrid.setAlignment(Pos.CENTER);
         bottomGrid.setGridLinesVisible(false);
-        bottomGrid.setPadding(new Insets (5, 20, 15, 20));
+        bottomGrid.setPadding(new Insets (5, 20, 5, 20));
         bottomGrid.setVgap(12);
         bottomGrid.setHgap(15);
 
@@ -154,7 +156,9 @@ public class Gui {
         mostBottom.setAlignment(Pos.CENTER);
         mostBottom.setId("errors");
         mostBottom.getChildren().add(errors);
-        mostBottom.setPadding(new Insets(10, 30, 10, 30));
+        mostBottom.setPadding(new Insets(10, 10, 10, 30));
+
+        errors.setTextFill(Color.web("#DC2E24"));
 
         VBox layout = new VBox();
         layout.setSpacing(15);

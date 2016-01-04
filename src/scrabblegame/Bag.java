@@ -62,7 +62,6 @@ public class Bag {
             Integer valueOfLetter = values.get(letterLowercase);
             sumValue += valueOfLetter;
         }
-        System.out.println("Need tähed annavad kokku " + sumValue + " punkti.");
         return sumValue;
     }
 
