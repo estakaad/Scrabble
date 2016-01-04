@@ -31,12 +31,13 @@ public class Gui {
 
         Stage primaryStage = new Stage();
         primaryStage.setTitle("Scrabble");
+        System.setProperty("prism.text", "t2k");
 
         VBox heading = new VBox();
         Label topHeading = new Label("Scrabble");
         heading.getChildren().add(topHeading);
         heading.setAlignment(Pos.CENTER);
-        heading.setPadding(new Insets (50, 10, 10, 10));
+        heading.setPadding(new Insets (30, 10, 10, 10));
 
         GridPane topGrid = new GridPane();
         topGrid.setId("board");
@@ -83,16 +84,17 @@ public class Gui {
 
         bottomGrid.setAlignment(Pos.CENTER);
         bottomGrid.setGridLinesVisible(false);
-        bottomGrid.setPadding(new Insets(20, 30, 20, 30));
+        bottomGrid.setPadding(new Insets (5, 20, 15, 20));
         bottomGrid.setVgap(12);
-        bottomGrid.setHgap(12);
+        bottomGrid.setHgap(15);
 
         GridPane.setConstraints(rack, 1, 1);
         rack.setText(game.getPlayersRackString());
-        rack.setDisable(true);
+        rack.setAlignment(Pos.CENTER_LEFT);
 
         Button makeMove = new Button("Tee käik ära");
         GridPane.setConstraints(makeMove, 1, 2);
+        makeMove.setAlignment(Pos.CENTER_LEFT);
 
         makeMove.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -145,10 +147,10 @@ public class Gui {
         bottomGrid.getChildren().addAll(rack, makeMove, moveLabel, totalLabel, pointsMove, pointsTotal);
 
         VBox layout = new VBox();
-        layout.setSpacing(25);
+        layout.setSpacing(15);
         layout.getChildren().addAll(heading, topGrid, bottomGrid);
 
-        Scene scene = new Scene(layout, 800, 800);
+        Scene scene = new Scene(layout, 750, 900);
         scene.getStylesheets().add("scrabblegame/stylesheet.css");
         primaryStage.setScene(scene);
         primaryStage.show();
