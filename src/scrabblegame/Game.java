@@ -38,7 +38,7 @@ public class Game {
 
         Boolean legal = true;
 
-        ArrayList<CoordinatePairs> listOfCoordinatePairs = pairsOfNewLetterCoordinates(previousBoardState, wholeBoard);
+        ArrayList<CoordinatePair> listOfCoordinatePairs = pairsOfNewLetterCoordinates(previousBoardState, wholeBoard);
 
         if (listOfCoordinatePairs.size() < 2 && board.isBoardEmpty() == true) {
             errorMessages.add("Esimese käigu ajal tuleb lauale panna vähemalt kaks tähte.");
@@ -47,6 +47,7 @@ public class Game {
 
         List<Character> enteredArray = getEnteredArray(listOfCoordinatePairs, wholeBoard);
         ArrayList<String> newWords = allTheNewWords(listOfCoordinatePairs, wholeBoard);
+
 
         if (isInOneLine(listOfCoordinatePairs) == false) {
             errorMessages.add("Sõna peab olema ühes reas või veerus.");
@@ -114,10 +115,10 @@ public class Game {
 
 
     //Get all the new words
-    private ArrayList<String> allTheNewWords(ArrayList<CoordinatePairs> listOfCoordinatePairs, char[][] wholeBoard) {
+    private ArrayList<String> allTheNewWords(ArrayList<CoordinatePair> listOfCoordinatePairs, char[][] wholeBoard) {
 
         ArrayList<String> newWords = new ArrayList<>();
-        ArrayList <CoordinatePairs> firstLastLetterCoordinates = new ArrayList<CoordinatePairs>();
+        ArrayList <CoordinatePair> firstLastLetterCoordinates = new ArrayList<CoordinatePair>();
 
         if (listOfCoordinatePairs.size() == 1 || ((listOfCoordinatePairs.get(0).x == listOfCoordinatePairs.get(1).x))) { // Word is set horizontally
 
@@ -134,9 +135,9 @@ public class Game {
 
         if (listOfCoordinatePairs.size() == 1 || ((listOfCoordinatePairs.get(0).x == listOfCoordinatePairs.get(1).x))) {
             for (int i = 0; i < listOfCoordinatePairs.size(); i++) {
-                ArrayList<CoordinatePairs> forVerticalCoordinates = new ArrayList<CoordinatePairs>();
+                ArrayList<CoordinatePair> forVerticalCoordinates = new ArrayList<CoordinatePair>();
                 forVerticalCoordinates.add(listOfCoordinatePairs.get(i));
-                ArrayList<CoordinatePairs> verCoordinatesToCheck = new ArrayList<CoordinatePairs>();
+                ArrayList<CoordinatePair> verCoordinatesToCheck = new ArrayList<CoordinatePair>();
 
                 verCoordinatesToCheck.add(getUpperLetterCoordinates(forVerticalCoordinates, wholeBoard));
                 verCoordinatesToCheck.add(getLowerLetterCoordinates(forVerticalCoordinates, wholeBoard));
@@ -147,9 +148,9 @@ public class Game {
 
         } else {
             for (int i = 0; i < listOfCoordinatePairs.size(); i++) {
-                ArrayList<CoordinatePairs> forHorizontalCoordinates = new ArrayList<CoordinatePairs>();
+                ArrayList<CoordinatePair> forHorizontalCoordinates = new ArrayList<CoordinatePair>();
                 forHorizontalCoordinates.add(listOfCoordinatePairs.get(i));
-                ArrayList<CoordinatePairs> horCoordinatesToCheck = new ArrayList<CoordinatePairs>();
+                ArrayList<CoordinatePair> horCoordinatesToCheck = new ArrayList<CoordinatePair>();
 
                 horCoordinatesToCheck.add(getLeftLetterCoordinates(forHorizontalCoordinates, wholeBoard));
                 horCoordinatesToCheck.add(getRightLetterCoordinates(forHorizontalCoordinates, wholeBoard));
@@ -181,7 +182,6 @@ public class Game {
         for (int i = 0; i < newWords.size(); i++) {
             if (newWords.get(i).length() > 1) {
                 points = bag.getValue((String) newWords.get(i));
-                System.out.println(points);
             }
         }
 
@@ -193,14 +193,14 @@ public class Game {
     }
 
     //Which letters are new on the board?
-    private ArrayList<CoordinatePairs> pairsOfNewLetterCoordinates(char[][] previousBoardState, char[][] wholeBoard) {
+    private ArrayList<CoordinatePair> pairsOfNewLetterCoordinates(char[][] previousBoardState, char[][] wholeBoard) {
 
-        ArrayList <CoordinatePairs> listOfCoordinatePairs = new ArrayList<CoordinatePairs>(0);
+        ArrayList <CoordinatePair> listOfCoordinatePairs = new ArrayList<CoordinatePair>(0);
 
         for (int i = 0; i < 15; i++) {
             for (int j = 0; j < 15; j++) {
                 if (previousBoardState[i][j] != wholeBoard[i][j]) {
-                    CoordinatePairs pair = new CoordinatePairs(j,i);
+                    CoordinatePair pair = new CoordinatePair(j,i);
                     listOfCoordinatePairs.add(pair);
 
                 }
@@ -210,7 +210,7 @@ public class Game {
         return listOfCoordinatePairs;
     }
 
-    private List<Character> getEnteredArray(ArrayList<CoordinatePairs> listOfCoordinatePairs, char[][] wholeBoard) {
+    private List<Character> getEnteredArray(ArrayList<CoordinatePair> listOfCoordinatePairs, char[][] wholeBoard) {
 
         ArrayList<Character> enteredArray = new ArrayList<>();
 
@@ -222,25 +222,25 @@ public class Game {
     }
 
     //Find the most left tile
-    private CoordinatePairs getLeftLetterCoordinates(List<CoordinatePairs> listOfCoordinatePairs, char[][] wholeBoard) {
+    private CoordinatePair getLeftLetterCoordinates(List<CoordinatePair> listOfCoordinatePairs, char[][] wholeBoard) {
         int i = 1;
-        CoordinatePairs horizontalWordsLeftCoordinate = new CoordinatePairs((listOfCoordinatePairs.get(0).x), listOfCoordinatePairs.get(0).y);
+        CoordinatePair horizontalWordsLeftCoordinate = new CoordinatePair((listOfCoordinatePairs.get(0).x), listOfCoordinatePairs.get(0).y);
 
-        while ((listOfCoordinatePairs.get(0).y - 1) >= 0 && wholeBoard[listOfCoordinatePairs.get(0).y - i][listOfCoordinatePairs.get(0).x] != ' ') {
-            horizontalWordsLeftCoordinate = new CoordinatePairs(listOfCoordinatePairs.get(0).x, listOfCoordinatePairs.get(0).y - i);
+        while ((listOfCoordinatePairs.get(0).y - 1) > 0 && wholeBoard[listOfCoordinatePairs.get(0).y - i][listOfCoordinatePairs.get(0).x] != ' ') {
+            horizontalWordsLeftCoordinate = new CoordinatePair(listOfCoordinatePairs.get(0).x, listOfCoordinatePairs.get(0).y - i);
             i++;
         }
         return horizontalWordsLeftCoordinate;
     }
 
     //Find the most right tile
-    private CoordinatePairs getRightLetterCoordinates(List<CoordinatePairs> listOfCoordinatePairs, char[][] wholeBoard) {
+    private CoordinatePair getRightLetterCoordinates(List<CoordinatePair> listOfCoordinatePairs, char[][] wholeBoard) {
         int i = 0;
-        CoordinatePairs lastLetterCoordinates = listOfCoordinatePairs.get(listOfCoordinatePairs.size() - 1);
-        CoordinatePairs horizontalWordsRightCoordinate = new CoordinatePairs(lastLetterCoordinates.x, lastLetterCoordinates.y);
+        CoordinatePair lastLetterCoordinates = listOfCoordinatePairs.get(listOfCoordinatePairs.size() - 1);
+        CoordinatePair horizontalWordsRightCoordinate = new CoordinatePair(lastLetterCoordinates.x, lastLetterCoordinates.y);
 
         while ((lastLetterCoordinates.y + i) < 15 && wholeBoard[lastLetterCoordinates.y + i][lastLetterCoordinates.x] != ' ') {
-            horizontalWordsRightCoordinate = new CoordinatePairs(lastLetterCoordinates.x, lastLetterCoordinates.y + i);
+            horizontalWordsRightCoordinate = new CoordinatePair(lastLetterCoordinates.x, lastLetterCoordinates.y + i);
             i++;
         }
 
@@ -248,12 +248,12 @@ public class Game {
     }
 
     //Find the uppermost tile
-    private CoordinatePairs getUpperLetterCoordinates(List<CoordinatePairs> listOfCoordinatePairs, char[][] wholeBoard) {
+    private CoordinatePair getUpperLetterCoordinates(List<CoordinatePair> listOfCoordinatePairs, char[][] wholeBoard) {
         int i = 1;
-        CoordinatePairs verticalWordsUpperCoordinate = new CoordinatePairs(listOfCoordinatePairs.get(0).x, listOfCoordinatePairs.get(0).y);
+        CoordinatePair verticalWordsUpperCoordinate = new CoordinatePair(listOfCoordinatePairs.get(0).x, listOfCoordinatePairs.get(0).y);
 
         while ((listOfCoordinatePairs.get(0).x - i) > 0 && wholeBoard[listOfCoordinatePairs.get(0).y][listOfCoordinatePairs.get(0).x - i] != ' ') {
-            verticalWordsUpperCoordinate = new CoordinatePairs((listOfCoordinatePairs.get(0).x - i), (listOfCoordinatePairs.get(0).y));
+            verticalWordsUpperCoordinate = new CoordinatePair((listOfCoordinatePairs.get(0).x - i), (listOfCoordinatePairs.get(0).y));
             i++;
         }
 
@@ -261,15 +261,15 @@ public class Game {
     }
 
     //Find the lowest tile
-    private CoordinatePairs getLowerLetterCoordinates(List<CoordinatePairs> listOfCoordinatePairs, char[][] wholeBoard) {
+    private CoordinatePair getLowerLetterCoordinates(List<CoordinatePair> listOfCoordinatePairs, char[][] wholeBoard) {
 
         int i = 0;
 
-        CoordinatePairs lastLetterCoordinates = listOfCoordinatePairs.get(listOfCoordinatePairs.size() - 1);
-        CoordinatePairs verticalWordsLowerCoordinate = new CoordinatePairs(lastLetterCoordinates.x, lastLetterCoordinates.y);
+        CoordinatePair lastLetterCoordinates = listOfCoordinatePairs.get(listOfCoordinatePairs.size() - 1);
+        CoordinatePair verticalWordsLowerCoordinate = new CoordinatePair(lastLetterCoordinates.x, lastLetterCoordinates.y);
 
         while ((lastLetterCoordinates.x + i) < 15 && wholeBoard[lastLetterCoordinates.y][lastLetterCoordinates.x + i] != ' ') {
-            verticalWordsLowerCoordinate = new CoordinatePairs(lastLetterCoordinates.x + i, lastLetterCoordinates.y);
+            verticalWordsLowerCoordinate = new CoordinatePair(lastLetterCoordinates.x + i, lastLetterCoordinates.y);
             i++;
         }
 
@@ -277,7 +277,7 @@ public class Game {
     }
 
     //Create the string, when the first and last coordinates of the word are known
-    private String getWordToCheck(List<CoordinatePairs> firstLastLetterCoordinates, char[][] wholeBoard) {
+    private String getWordToCheck(List<CoordinatePair> firstLastLetterCoordinates, char[][] wholeBoard) {
         String wordToLookUp = "";
 
         if (firstLastLetterCoordinates.size() == 1 || ((firstLastLetterCoordinates.get(0).x == firstLastLetterCoordinates.get(1).x))) {
@@ -296,7 +296,7 @@ public class Game {
     }
 
     //Checks whether the input is in one line
-    private boolean isInOneLine(ArrayList<CoordinatePairs> listOfCoordinatePairs) {
+    private boolean isInOneLine(ArrayList<CoordinatePair> listOfCoordinatePairs) {
         for (int i = 0; i < listOfCoordinatePairs.size(); i++) {
             if ((listOfCoordinatePairs.get(0).y == listOfCoordinatePairs.get(i).y) ||
                     (listOfCoordinatePairs.get(0).x == listOfCoordinatePairs.get(i).x) ) {
@@ -320,18 +320,105 @@ public class Game {
     }
 
     //Checks whether the input is adjacent to already set letters
-    private boolean isAdjacent(char[][] wholeBoard, ArrayList<CoordinatePairs> listOfCoordinatePairs) {
+    private boolean isAdjacent(char[][] previousBoardState, ArrayList<CoordinatePair> listOfCoordinatePairs) {
 
         if (!board.isBoardEmpty()) {
             for (int i = 0; i < listOfCoordinatePairs.size(); i++) {
 
-                if ((wholeBoard[((listOfCoordinatePairs.get(i).y))][((listOfCoordinatePairs.get(i).x) + 1)] != ' ') || //Is there already a letter below the new input?
-                        (wholeBoard[((listOfCoordinatePairs.get(i).y) - 1)][(listOfCoordinatePairs.get(i).x)] != ' ') || //Is there already a letter left to the new input?
-                        (wholeBoard[((listOfCoordinatePairs.get(i).y) + 1)][(listOfCoordinatePairs.get(i).x)] != ' ') || //Is there already a letter right to the new input?
-                        (wholeBoard[listOfCoordinatePairs.get(i).y][((listOfCoordinatePairs.get(i).x) - 1)] != ' ')); //Is there already a letter above the new input?
+                CoordinatePair coordinatePair = listOfCoordinatePairs.get(i);
+
+                if (coordinatePair.y <= 0) {
+                    if (isLetterAbove(previousBoardState, coordinatePair) ||
+                        isLetterOnTheRight(previousBoardState, coordinatePair) ||
+                        isLetterBelow(previousBoardState, coordinatePair) == true) {
+                    }
+                }
+                if (coordinatePair.x <= 0) {
+                    if (isLetterOnTheLeft(previousBoardState, coordinatePair) ||
+                        isLetterBelow(previousBoardState, coordinatePair) ||
+                        isLetterOnTheRight(previousBoardState, coordinatePair) == true) {
+                    }
+                }
+                if (coordinatePair.y >= 14) {
+                    if (isLetterAbove(previousBoardState, coordinatePair) ||
+                        isLetterBelow(previousBoardState, coordinatePair) ||
+                        isLetterOnTheLeft(previousBoardState, coordinatePair) == true) {
+                    }
+                }
+                if (coordinatePair.x >= 14) {
+                    if (isLetterOnTheLeft(previousBoardState, coordinatePair) ||
+                        isLetterAbove(previousBoardState, coordinatePair) ||
+                        isLetterOnTheRight(previousBoardState, coordinatePair) == true) {
+                    }
+                }
+                if (coordinatePair.x <= 0 && coordinatePair.y <= 0) {
+                    if (isLetterOnTheRight(previousBoardState, coordinatePair) ||
+                        isLetterBelow(previousBoardState, coordinatePair) == true) {
+                    }
+                }
+                if (coordinatePair.x <= 0 && coordinatePair.y >= 14) {
+                    if (isLetterOnTheLeft(previousBoardState, coordinatePair) ||
+                        isLetterBelow(previousBoardState, coordinatePair) == true) {
+                    }
+                }
+                if (coordinatePair.x >= 14 && coordinatePair.y >= 14) {
+                    if (isLetterOnTheLeft(previousBoardState, coordinatePair) ||
+                        isLetterAbove(previousBoardState, coordinatePair) == true) {
+                    }
+                }
+                if (coordinatePair.x >= 14 && coordinatePair.y >= 14) {
+                    if (isLetterAbove(previousBoardState, coordinatePair) ||
+                        isLetterAbove(previousBoardState, coordinatePair) == true) {
+                    }
+                }
                 else {
                     return false;
                 }
+            }
+        }
+        return true;
+    }
+
+    //Is there already an adjacent letter to the left of one of the entered letters?
+    private boolean isLetterOnTheLeft(char[][] previousBoardState, CoordinatePair coordinatePair) {
+
+        if (!board.isBoardEmpty()) {
+            if (previousBoardState[coordinatePair.y - 1][coordinatePair.x] == ' ') {
+                return false;
+            }
+        }
+        return true;
+    }
+
+   //Is there already an adjacent letter to the right of one of the entered letters?
+    private boolean isLetterOnTheRight(char[][] previousBoardState, CoordinatePair coordinatePair) {
+
+        if (!board.isBoardEmpty()) {
+            if (previousBoardState[coordinatePair.y + 1][coordinatePair.x] == ' ') {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    //Is there already an adjacent letter above one of the entered letters?
+    private boolean isLetterAbove(char[][] previousBoardState, CoordinatePair coordinatePair) {
+
+        if (!board.isBoardEmpty()) {
+            if (previousBoardState[coordinatePair.y][coordinatePair.x - 1] == ' ') {
+                return false;
+            }
+        }
+        return true;
+    }
+
+
+    //Is there already an adjacent letter below one of the entered letters?
+    private boolean isLetterBelow(char[][] previousBoardState, CoordinatePair coordinatePair) {
+
+        if (!board.isBoardEmpty()) {
+            if (previousBoardState[coordinatePair.y][coordinatePair.x + 1] == ' ') {
+                return false;
             }
         }
         return true;
@@ -377,3 +464,41 @@ public class Game {
 
 
 }
+
+/*//Is there already an adjacent letter to the left of one of the entered letters?
+    private boolean isLetterOnTheLeft(char[][] previousBoardState, ArrayList<CoordinatePair> listOfCoordinatePairs) {
+
+        if (!board.isBoardEmpty()) {
+            for (int i = 0; i < listOfCoordinatePairs.size(); i++) {
+                if () {
+
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+  *//*  //Is there already an adjacent letter to the right of one of the entered letters?
+    private boolean isLetterOnTheRight(char[][] previousBoardState, ArrayList<CoordinatePair> listOfCoordinatePairs) {
+
+        if (!board.isBoardEmpty()) {
+            for (int i = 0; i < listOfCoordinatePairs.size(); i++) {
+                if (previousBoardState[listOfCoordinatePairs.get(i).y + 1][listOfCoordinatePairs.get(i).x] == ' ' && (((listOfCoordinatePairs.get(i).y) + 1) <= 15) ) {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+
+    //Is there already an adjacent letter above one of the entered letters?
+    private boolean isLetterAbove(char[][] previousBoardState, ArrayList<CoordinatePair> listOfCoordinatePairs) {
+
+        if (!board.isBoardEmpty()) {
+            if (previousBoardState[listOfCoordinatePairs.get(i).y][(listOfCoordinatePairs.get(i).x) - 1] == ' ' && (((listOfCoordinatePairs.get(i).x) - 1) >= 0)) {
+                return false;
+            }
+        }
+        return true;
+    }*/
