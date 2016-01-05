@@ -174,11 +174,9 @@ public class Game {
 
         for (int i = 0; i < newWords.size(); i++) {
             if (newWords.get(i).length() > 1) {
-                points = bag.getValue((String) newWords.get(i));
+                points = points + bag.getValue((String) newWords.get(i));
             }
         }
-
-        points += points;
 
         System.out.println(points);
 
