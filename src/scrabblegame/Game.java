@@ -323,59 +323,65 @@ public class Game {
                 CoordinatePair coordinatePair = listOfCoordinatePairs.get(i);
 
                 if (coordinatePair.y == 0 && coordinatePair.x != 0 && coordinatePair.x != 14) {
-                    if (isLetterAbove(previousBoardState, coordinatePair) ||
+                    if (!(isLetterAbove(previousBoardState, coordinatePair) ||
                         isLetterOnTheRight(previousBoardState, coordinatePair) ||
-                        isLetterBelow(previousBoardState, coordinatePair) == true) {
+                        isLetterBelow(previousBoardState, coordinatePair) == true)) {
+                        return false;
                     }
                 }
                 if (coordinatePair.x == 0 && coordinatePair.y != 0 && coordinatePair.x != 14) {
-                    if (isLetterOnTheLeft(previousBoardState, coordinatePair) ||
+                    if (!(isLetterOnTheLeft(previousBoardState, coordinatePair) ||
                         isLetterBelow(previousBoardState, coordinatePair) ||
-                        isLetterOnTheRight(previousBoardState, coordinatePair) == true) {
+                        isLetterOnTheRight(previousBoardState, coordinatePair) == true)) {
+                        return false;
                     }
                 }
                 if (coordinatePair.y == 14 && coordinatePair.x != 0 && coordinatePair.x != 14) {
-                    if (isLetterAbove(previousBoardState, coordinatePair) ||
+                    if (!(isLetterAbove(previousBoardState, coordinatePair) ||
                         isLetterBelow(previousBoardState, coordinatePair) ||
-                        isLetterOnTheLeft(previousBoardState, coordinatePair) == true) {
+                        isLetterOnTheLeft(previousBoardState, coordinatePair) == true)) {
+                        return false;
                     }
                 }
                 if (coordinatePair.x == 14 && coordinatePair.y != 0 && coordinatePair.y != 14) {
-                    if (isLetterOnTheLeft(previousBoardState, coordinatePair) ||
+                    if (!(isLetterOnTheLeft(previousBoardState, coordinatePair) ||
                         isLetterAbove(previousBoardState, coordinatePair) ||
-                        isLetterOnTheRight(previousBoardState, coordinatePair) == true) {
+                        isLetterOnTheRight(previousBoardState, coordinatePair) == true)) {
+                        return false;
                     }
                 }
                 if (coordinatePair.x == 0 && coordinatePair.y == 0) {
-                    if (isLetterOnTheRight(previousBoardState, coordinatePair) ||
-                        isLetterBelow(previousBoardState, coordinatePair) == true) {
+                    if (!(isLetterOnTheRight(previousBoardState, coordinatePair) ||
+                        isLetterBelow(previousBoardState, coordinatePair) == true)) {
+                        return false;
                     }
                 }
                 if (coordinatePair.x == 0 && coordinatePair.y == 14) {
-                    if (isLetterOnTheLeft(previousBoardState, coordinatePair) ||
-                        isLetterBelow(previousBoardState, coordinatePair) == true) {
+                    if (!(isLetterOnTheLeft(previousBoardState, coordinatePair) ||
+                        isLetterBelow(previousBoardState, coordinatePair) == true)) {
+                        return false;
                     }
                 }
                 if (coordinatePair.x == 14 && coordinatePair.y == 14) {
-                    if (isLetterOnTheLeft(previousBoardState, coordinatePair) ||
-                        isLetterAbove(previousBoardState, coordinatePair) == true) {
+                    if ((!isLetterOnTheLeft(previousBoardState, coordinatePair) ||
+                        isLetterAbove(previousBoardState, coordinatePair) == true)) {
+                        return false;
                     }
                 }
-                if (coordinatePair.x == 14 && coordinatePair.y == 14) {
-                    if (isLetterAbove(previousBoardState, coordinatePair) ||
-                        isLetterOnTheRight(previousBoardState, coordinatePair) == true) {
-                    }
-                }
-                if (coordinatePair.x > 0 && coordinatePair.x < 14 && coordinatePair.y > 0 && coordinatePair.y < 14) {
-                    if (isLetterAbove(previousBoardState, coordinatePair) ||
-                        isLetterBelow(previousBoardState, coordinatePair) ||
-                        isLetterOnTheLeft(previousBoardState, coordinatePair) ||
-                        isLetterOnTheRight(previousBoardState, coordinatePair) == true) {
+                if (coordinatePair.x == 14 && coordinatePair.y == 0) {
+                    if (!(isLetterAbove(previousBoardState, coordinatePair) ||
+                        isLetterOnTheRight(previousBoardState, coordinatePair) == true)) {
+                        return false;
                     }
                 }
 
-                else {
-                    return false;
+                if (coordinatePair.x > 0 && coordinatePair.x < 14 && coordinatePair.y > 0 && coordinatePair.y < 14) {
+                    if (!(isLetterAbove(previousBoardState, coordinatePair) ||
+                        isLetterBelow(previousBoardState, coordinatePair) ||
+                        isLetterOnTheLeft(previousBoardState, coordinatePair) ||
+                        isLetterOnTheRight(previousBoardState, coordinatePair) == true)) {
+                        return  false;
+                    }
                 }
             }
         }
@@ -463,6 +469,5 @@ public class Game {
 
         return false;
     }
-
 
 }

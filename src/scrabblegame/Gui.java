@@ -159,6 +159,7 @@ public class Gui {
         mostBottom.setPadding(new Insets(10, 10, 10, 30));
 
         errors.setTextFill(Color.web("#DC2E24"));
+        errors.setAlignment(Pos.CENTER);
 
         VBox layout = new VBox();
         layout.setSpacing(15);

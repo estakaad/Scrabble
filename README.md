@@ -18,6 +18,7 @@ All rights to the dictionary belong to the Institute of the Estonian Language.
 * Player should be able to change their tiles instead of making a move.
 * The board should have double and triple bonus squares.
 * The first word set on the board must always cross the square in the middle of the board.
+* The bag doesn't contain the any-letter tiles. 
 
 ###Known bugs
 * Error occurs, when player enters a word which otherwise would be valid, but which includes more instances of a letter than there is on the rack. For example, rack is AAEKSGF, player enters KASSA. Every letter is indeed on the rack, but player entered more S-s than there are on the rack.

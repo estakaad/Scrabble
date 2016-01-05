@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4325afeb-4d61-4497-9890-ed0697aa6e5f" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/scrabblegame/Game.java" afterPath="$PROJECT_DIR$/src/scrabblegame/Game.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/scrabblegame/Gui.java" afterPath="$PROJECT_DIR$/src/scrabblegame/Gui.java" />
     </list>
     <ignored path="Scrabble.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -30,27 +32,43 @@
       <file leaf-file-name="Game.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/scrabblegame/Game.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.74178404">
-              <caret line="182" column="22" selection-start-line="182" selection-start-column="22" selection-end-line="182" selection-end-column="22" />
+            <state vertical-scroll-proportion="0.5637066">
+              <caret line="376" column="0" selection-start-line="376" selection-start-column="0" selection-end-line="376" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
+                <element signature="method#makeMoveOnBoard#0;class#Game#0" expanded="false" />
                 <element signature="method#getMessagesToStrings#0;class#Game#0" expanded="false" />
                 <element signature="method#allTheNewWords#0;class#Game#0" expanded="false" />
                 <element signature="method#checkWordsFromDict#0;class#Game#0" expanded="false" />
+                <element signature="method#pairsOfNewLetterCoordinates#0;class#Game#0" expanded="false" />
                 <element signature="method#getEnteredArray#0;class#Game#0" expanded="false" />
                 <element signature="method#getLeftLetterCoordinates#0;class#Game#0" expanded="false" />
                 <element signature="method#getRightLetterCoordinates#0;class#Game#0" expanded="false" />
                 <element signature="method#getUpperLetterCoordinates#0;class#Game#0" expanded="false" />
                 <element signature="method#getLowerLetterCoordinates#0;class#Game#0" expanded="false" />
+                <element signature="method#getWordToCheck#0;class#Game#0" expanded="false" />
                 <element signature="method#isInOneLine#0;class#Game#0" expanded="false" />
                 <element signature="method#isInputComprisedOfRack#0;class#Game#0" expanded="false" />
                 <element signature="method#isLetterOnTheLeft#0;class#Game#0" expanded="false" />
                 <element signature="method#isLetterOnTheRight#0;class#Game#0" expanded="false" />
                 <element signature="method#isLetterAbove#0;class#Game#0" expanded="false" />
-                <element signature="method#isLetterBelow#0;class#Game#0" expanded="false" />
                 <element signature="method#charListToString#0;class#Game#0" expanded="false" />
                 <element signature="method#checkFromDict#0;class#Game#0" expanded="false" />
                 <element signature="method#checkIfWordIsARealWord#0;class#Game#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Player.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/scrabblegame/Player.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="11" column="26" selection-start-line="11" selection-start-column="26" selection-end-line="11" selection-end-column="26" />
+              <folding>
+                <element signature="e#220#221#0" expanded="true" />
+                <element signature="e#253#254#0" expanded="true" />
+                <element signature="method#addLettersToRack#0;class#Player#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -100,13 +118,13 @@
         <option value="$PROJECT_DIR$/src/scrabblegame/Word.java" />
         <option value="$PROJECT_DIR$/src/scrabblegame/Board.java" />
         <option value="$PROJECT_DIR$/src/scrabblegame/Player.java" />
-        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/src/scrabblegame/DictionaryDatabase.java" />
         <option value="$PROJECT_DIR$/src/scrabblegame/stylesheet.css" />
-        <option value="$PROJECT_DIR$/src/scrabblegame/Bag.java" />
         <option value="$PROJECT_DIR$/src/scrabblegame/CoordinatePairs.java" />
         <option value="$PROJECT_DIR$/src/scrabblegame/CoordinatePair.java" />
         <option value="$PROJECT_DIR$/src/scrabblegame/Gui.java" />
+        <option value="$PROJECT_DIR$/src/scrabblegame/Bag.java" />
+        <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/src/scrabblegame/Game.java" />
       </list>
     </option>
@@ -728,12 +746,12 @@
       <workItem from="1451860003753" duration="637000" />
       <workItem from="1451860672657" duration="6485000" />
       <workItem from="1451938303471" duration="7334000" />
-      <workItem from="1452013153655" duration="15443000" />
+      <workItem from="1452013153655" duration="19429000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="175901000" />
+    <option name="totallyTimeSpent" value="179887000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="336" width="1366" height="744" extended-state="6" />
@@ -746,7 +764,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32967892" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32850242" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29520866" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15301391" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32766616" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18712121" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -831,7 +849,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/scrabblegame/Game.java</url>
-          <line>396</line>
+          <line>402</line>
           <properties class="scrabblegame.Game" method="isLetterOnTheRight" />
           <option name="timeStamp" value="19" />
         </line-breakpoint>
@@ -847,8 +865,14 @@
           <properties />
           <option name="timeStamp" value="18" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/scrabblegame/Game.java</url>
+          <line>426</line>
+          <properties />
+          <option name="timeStamp" value="20" />
+        </line-breakpoint>
       </breakpoints>
-      <option name="time" value="20" />
+      <option name="time" value="21" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -863,20 +887,22 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#makeMoveOnBoard#0;class#Game#0" expanded="false" />
             <element signature="method#getMessagesToStrings#0;class#Game#0" expanded="false" />
             <element signature="method#allTheNewWords#0;class#Game#0" expanded="false" />
             <element signature="method#checkWordsFromDict#0;class#Game#0" expanded="false" />
+            <element signature="method#pairsOfNewLetterCoordinates#0;class#Game#0" expanded="false" />
             <element signature="method#getEnteredArray#0;class#Game#0" expanded="false" />
             <element signature="method#getLeftLetterCoordinates#0;class#Game#0" expanded="false" />
             <element signature="method#getRightLetterCoordinates#0;class#Game#0" expanded="false" />
             <element signature="method#getUpperLetterCoordinates#0;class#Game#0" expanded="false" />
             <element signature="method#getLowerLetterCoordinates#0;class#Game#0" expanded="false" />
+            <element signature="method#getWordToCheck#0;class#Game#0" expanded="false" />
             <element signature="method#isInOneLine#0;class#Game#0" expanded="false" />
             <element signature="method#isInputComprisedOfRack#0;class#Game#0" expanded="false" />
             <element signature="method#isLetterOnTheLeft#0;class#Game#0" expanded="false" />
             <element signature="method#isLetterOnTheRight#0;class#Game#0" expanded="false" />
             <element signature="method#isLetterAbove#0;class#Game#0" expanded="false" />
-            <element signature="method#isLetterBelow#0;class#Game#0" expanded="false" />
             <element signature="method#charListToString#0;class#Game#0" expanded="false" />
             <element signature="method#checkFromDict#0;class#Game#0" expanded="false" />
             <element signature="method#checkIfWordIsARealWord#0;class#Game#0" expanded="false" />
@@ -900,8 +926,6 @@
             <element signature="e#220#221#0" expanded="true" />
             <element signature="e#253#254#0" expanded="true" />
             <element signature="method#addLettersToRack#0;class#Player#0" expanded="false" />
-            <element signature="method#getAmountOfTilesToAdd#0;class#Player#0" expanded="false" />
-            <element signature="method#getTilesRemovedFromRack#0;class#Player#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -969,8 +993,6 @@
             <element signature="e#220#221#0" expanded="true" />
             <element signature="e#253#254#0" expanded="true" />
             <element signature="method#addLettersToRack#0;class#Player#0" expanded="false" />
-            <element signature="method#getAmountOfTilesToAdd#0;class#Player#0" expanded="false" />
-            <element signature="method#getTilesRemovedFromRack#0;class#Player#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1003,8 +1025,6 @@
             <element signature="e#220#221#0" expanded="true" />
             <element signature="e#253#254#0" expanded="true" />
             <element signature="method#addLettersToRack#0;class#Player#0" expanded="false" />
-            <element signature="method#getAmountOfTilesToAdd#0;class#Player#0" expanded="false" />
-            <element signature="method#getTilesRemovedFromRack#0;class#Player#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1037,8 +1057,6 @@
             <element signature="e#220#221#0" expanded="true" />
             <element signature="e#253#254#0" expanded="true" />
             <element signature="method#addLettersToRack#0;class#Player#0" expanded="false" />
-            <element signature="method#getAmountOfTilesToAdd#0;class#Player#0" expanded="false" />
-            <element signature="method#getTilesRemovedFromRack#0;class#Player#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1071,8 +1089,6 @@
             <element signature="e#220#221#0" expanded="true" />
             <element signature="e#253#254#0" expanded="true" />
             <element signature="method#addLettersToRack#0;class#Player#0" expanded="false" />
-            <element signature="method#getAmountOfTilesToAdd#0;class#Player#0" expanded="false" />
-            <element signature="method#getTilesRemovedFromRack#0;class#Player#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1112,8 +1128,6 @@
             <element signature="e#220#221#0" expanded="true" />
             <element signature="e#253#254#0" expanded="true" />
             <element signature="method#addLettersToRack#0;class#Player#0" expanded="false" />
-            <element signature="method#getAmountOfTilesToAdd#0;class#Player#0" expanded="false" />
-            <element signature="method#getTilesRemovedFromRack#0;class#Player#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1153,8 +1167,6 @@
             <element signature="e#220#221#0" expanded="true" />
             <element signature="e#253#254#0" expanded="true" />
             <element signature="method#addLettersToRack#0;class#Player#0" expanded="false" />
-            <element signature="method#getAmountOfTilesToAdd#0;class#Player#0" expanded="false" />
-            <element signature="method#getTilesRemovedFromRack#0;class#Player#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1258,36 +1270,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.738255">
-          <caret line="22" column="289" selection-start-line="22" selection-start-column="289" selection-end-line="22" selection-end-column="289" />
-        </state>
-      </provider>
-      <provider editor-type-id="MarkdownPreviewEditor">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/scrabblegame/stylesheet.css">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.4176334">
           <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/scrabblegame/Gui.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.11392405">
-          <caret line="152" column="0" selection-start-line="152" selection-start-column="0" selection-end-line="152" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/scrabblegame/Bag.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.1518986">
-          <caret line="69" column="67" selection-start-line="69" selection-start-column="67" selection-end-line="69" selection-end-column="67" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1313,20 +1299,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/scrabblegame/Player.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.17721519">
-          <caret line="11" column="26" selection-start-line="11" selection-start-column="26" selection-end-line="11" selection-end-column="26" />
-          <folding>
-            <element signature="e#220#221#0" expanded="true" />
-            <element signature="e#253#254#0" expanded="true" />
-            <element signature="method#addLettersToRack#0;class#Player#0" expanded="false" />
-            <element signature="method#getAmountOfTilesToAdd#0;class#Player#0" expanded="false" />
-            <element signature="method#getTilesRemovedFromRack#0;class#Player#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/scrabblegame/Scrabble.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.443038">
@@ -1346,26 +1318,67 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/scrabblegame/Bag.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.2112676">
+          <caret line="7" column="60" selection-start-line="7" selection-start-column="60" selection-end-line="7" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/scrabblegame/Gui.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.36150235">
+          <caret line="159" column="0" selection-start-line="159" selection-start-column="0" selection-end-line="159" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/scrabblegame/Player.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="11" column="26" selection-start-line="11" selection-start-column="26" selection-end-line="11" selection-end-column="26" />
+          <folding>
+            <element signature="e#220#221#0" expanded="true" />
+            <element signature="e#253#254#0" expanded="true" />
+            <element signature="method#addLettersToRack#0;class#Player#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.66329116">
+          <caret line="20" column="47" selection-start-line="20" selection-start-column="47" selection-end-line="20" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="MarkdownPreviewEditor">
+        <state />
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/scrabblegame/Game.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.74178404">
-          <caret line="182" column="22" selection-start-line="182" selection-start-column="22" selection-end-line="182" selection-end-column="22" />
+        <state vertical-scroll-proportion="0.5637066">
+          <caret line="376" column="0" selection-start-line="376" selection-start-column="0" selection-end-line="376" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#makeMoveOnBoard#0;class#Game#0" expanded="false" />
             <element signature="method#getMessagesToStrings#0;class#Game#0" expanded="false" />
             <element signature="method#allTheNewWords#0;class#Game#0" expanded="false" />
             <element signature="method#checkWordsFromDict#0;class#Game#0" expanded="false" />
+            <element signature="method#pairsOfNewLetterCoordinates#0;class#Game#0" expanded="false" />
             <element signature="method#getEnteredArray#0;class#Game#0" expanded="false" />
             <element signature="method#getLeftLetterCoordinates#0;class#Game#0" expanded="false" />
             <element signature="method#getRightLetterCoordinates#0;class#Game#0" expanded="false" />
             <element signature="method#getUpperLetterCoordinates#0;class#Game#0" expanded="false" />
             <element signature="method#getLowerLetterCoordinates#0;class#Game#0" expanded="false" />
+            <element signature="method#getWordToCheck#0;class#Game#0" expanded="false" />
             <element signature="method#isInOneLine#0;class#Game#0" expanded="false" />
             <element signature="method#isInputComprisedOfRack#0;class#Game#0" expanded="false" />
             <element signature="method#isLetterOnTheLeft#0;class#Game#0" expanded="false" />
             <element signature="method#isLetterOnTheRight#0;class#Game#0" expanded="false" />
             <element signature="method#isLetterAbove#0;class#Game#0" expanded="false" />
-            <element signature="method#isLetterBelow#0;class#Game#0" expanded="false" />
             <element signature="method#charListToString#0;class#Game#0" expanded="false" />
             <element signature="method#checkFromDict#0;class#Game#0" expanded="false" />
             <element signature="method#checkIfWordIsARealWord#0;class#Game#0" expanded="false" />
