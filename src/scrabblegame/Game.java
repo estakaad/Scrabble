@@ -17,7 +17,6 @@ public class Game {
         List generatedRack = bag.getLetters(7);
         player.addLettersToRack(generatedRack);
         setPointsLastMove(0);
-
     }
 
     public String getPlayersRackString() {
@@ -85,12 +84,8 @@ public class Game {
         if (legal == true) {
             board.setBoard(wholeBoard);
         }
-
-
-
         return legal;
     }
-
 
     public int getPointsLastMove() {
         return pointsLastMove;
@@ -99,7 +94,6 @@ public class Game {
     public void setPointsLastMove(int pointsLastMove) {
         this.pointsLastMove = pointsLastMove;
     }
-
 
     public String getMessagesToStrings() {
 
@@ -112,7 +106,6 @@ public class Game {
         return errors;
 
     }
-
 
     //Get all the new words
     private ArrayList<String> allTheNewWords(ArrayList<CoordinatePair> listOfCoordinatePairs, char[][] wholeBoard) {
@@ -159,7 +152,7 @@ public class Game {
 
             }
         }
-
+        System.out.println(newWords);
         return newWords;
     }
 
@@ -184,6 +177,10 @@ public class Game {
                 points = bag.getValue((String) newWords.get(i));
             }
         }
+
+        points += points;
+
+        System.out.println(points);
 
         return points;
     }
@@ -327,50 +324,58 @@ public class Game {
 
                 CoordinatePair coordinatePair = listOfCoordinatePairs.get(i);
 
-                if (coordinatePair.y <= 0) {
+                if (coordinatePair.y == 0 && coordinatePair.x != 0 && coordinatePair.x != 14) {
                     if (isLetterAbove(previousBoardState, coordinatePair) ||
                         isLetterOnTheRight(previousBoardState, coordinatePair) ||
                         isLetterBelow(previousBoardState, coordinatePair) == true) {
                     }
                 }
-                if (coordinatePair.x <= 0) {
+                if (coordinatePair.x == 0 && coordinatePair.y != 0 && coordinatePair.x != 14) {
                     if (isLetterOnTheLeft(previousBoardState, coordinatePair) ||
                         isLetterBelow(previousBoardState, coordinatePair) ||
                         isLetterOnTheRight(previousBoardState, coordinatePair) == true) {
                     }
                 }
-                if (coordinatePair.y >= 14) {
+                if (coordinatePair.y == 14 && coordinatePair.x != 0 && coordinatePair.x != 14) {
                     if (isLetterAbove(previousBoardState, coordinatePair) ||
                         isLetterBelow(previousBoardState, coordinatePair) ||
                         isLetterOnTheLeft(previousBoardState, coordinatePair) == true) {
                     }
                 }
-                if (coordinatePair.x >= 14) {
+                if (coordinatePair.x == 14 && coordinatePair.y != 0 && coordinatePair.y != 14) {
                     if (isLetterOnTheLeft(previousBoardState, coordinatePair) ||
                         isLetterAbove(previousBoardState, coordinatePair) ||
                         isLetterOnTheRight(previousBoardState, coordinatePair) == true) {
                     }
                 }
-                if (coordinatePair.x <= 0 && coordinatePair.y <= 0) {
+                if (coordinatePair.x == 0 && coordinatePair.y == 0) {
                     if (isLetterOnTheRight(previousBoardState, coordinatePair) ||
                         isLetterBelow(previousBoardState, coordinatePair) == true) {
                     }
                 }
-                if (coordinatePair.x <= 0 && coordinatePair.y >= 14) {
+                if (coordinatePair.x == 0 && coordinatePair.y == 14) {
                     if (isLetterOnTheLeft(previousBoardState, coordinatePair) ||
                         isLetterBelow(previousBoardState, coordinatePair) == true) {
                     }
                 }
-                if (coordinatePair.x >= 14 && coordinatePair.y >= 14) {
+                if (coordinatePair.x == 14 && coordinatePair.y == 14) {
                     if (isLetterOnTheLeft(previousBoardState, coordinatePair) ||
                         isLetterAbove(previousBoardState, coordinatePair) == true) {
                     }
                 }
-                if (coordinatePair.x >= 14 && coordinatePair.y >= 14) {
+                if (coordinatePair.x == 14 && coordinatePair.y == 14) {
                     if (isLetterAbove(previousBoardState, coordinatePair) ||
-                        isLetterAbove(previousBoardState, coordinatePair) == true) {
+                        isLetterOnTheRight(previousBoardState, coordinatePair) == true) {
                     }
                 }
+                if (coordinatePair.x > 0 && coordinatePair.x < 14 && coordinatePair.y > 0 && coordinatePair.y < 14) {
+                    if (isLetterAbove(previousBoardState, coordinatePair) ||
+                        isLetterBelow(previousBoardState, coordinatePair) ||
+                        isLetterOnTheLeft(previousBoardState, coordinatePair) ||
+                        isLetterOnTheRight(previousBoardState, coordinatePair) == true) {
+                    }
+                }
+
                 else {
                     return false;
                 }
@@ -390,7 +395,7 @@ public class Game {
         return true;
     }
 
-   //Is there already an adjacent letter to the right of one of the entered letters?
+    //Is there already an adjacent letter to the right of one of the entered letters?
     private boolean isLetterOnTheRight(char[][] previousBoardState, CoordinatePair coordinatePair) {
 
         if (!board.isBoardEmpty()) {
@@ -411,7 +416,6 @@ public class Game {
         }
         return true;
     }
-
 
     //Is there already an adjacent letter below one of the entered letters?
     private boolean isLetterBelow(char[][] previousBoardState, CoordinatePair coordinatePair) {
@@ -464,41 +468,3 @@ public class Game {
 
 
 }
-
-/*//Is there already an adjacent letter to the left of one of the entered letters?
-    private boolean isLetterOnTheLeft(char[][] previousBoardState, ArrayList<CoordinatePair> listOfCoordinatePairs) {
-
-        if (!board.isBoardEmpty()) {
-            for (int i = 0; i < listOfCoordinatePairs.size(); i++) {
-                if () {
-
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
-
-  *//*  //Is there already an adjacent letter to the right of one of the entered letters?
-    private boolean isLetterOnTheRight(char[][] previousBoardState, ArrayList<CoordinatePair> listOfCoordinatePairs) {
-
-        if (!board.isBoardEmpty()) {
-            for (int i = 0; i < listOfCoordinatePairs.size(); i++) {
-                if (previousBoardState[listOfCoordinatePairs.get(i).y + 1][listOfCoordinatePairs.get(i).x] == ' ' && (((listOfCoordinatePairs.get(i).y) + 1) <= 15) ) {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
-
-    //Is there already an adjacent letter above one of the entered letters?
-    private boolean isLetterAbove(char[][] previousBoardState, ArrayList<CoordinatePair> listOfCoordinatePairs) {
-
-        if (!board.isBoardEmpty()) {
-            if (previousBoardState[listOfCoordinatePairs.get(i).y][(listOfCoordinatePairs.get(i).x) - 1] == ' ' && (((listOfCoordinatePairs.get(i).x) - 1) >= 0)) {
-                return false;
-            }
-        }
-        return true;
-    }*/

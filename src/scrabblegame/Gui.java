@@ -67,7 +67,6 @@ public class Gui {
 
         }
 
-
         // James_D http://stackoverflow.com/questions/34407694/javafx-textfield-allow-only-one-letter-to-be-typed?lq=1
         //Allow only one letter to be typed:
         for (int i = 0; i < 15; i++) {
@@ -100,6 +99,7 @@ public class Gui {
         GridPane.setConstraints(makeMove, 1, 2);
         makeMove.setAlignment(Pos.CENTER_LEFT);
 
+        //Make the move if the player has followed rules
         makeMove.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
