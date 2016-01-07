@@ -152,7 +152,6 @@ public class Game {
 
             }
         }
-        System.out.println(newWords);
         return newWords;
     }
 
@@ -177,8 +176,6 @@ public class Game {
                 points = points + bag.getValue((String) newWords.get(i));
             }
         }
-
-        System.out.println(points);
 
         return points;
     }

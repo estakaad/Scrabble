@@ -165,7 +165,7 @@ public class Gui {
         layout.setSpacing(15);
         layout.getChildren().addAll(heading, topGrid, bottomGrid, mostBottom);
 
-        Scene scene = new Scene(layout, 700, 800);
+        Scene scene = new Scene(layout, 700, 750);
         scene.getStylesheets().add("scrabblegame/stylesheet.css");
         primaryStage.setScene(scene);
         primaryStage.show();

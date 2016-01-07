@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4325afeb-4d61-4497-9890-ed0697aa6e5f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/scrabblegame/Game.java" afterPath="$PROJECT_DIR$/src/scrabblegame/Game.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/scrabblegame/Gui.java" afterPath="$PROJECT_DIR$/src/scrabblegame/Gui.java" />
     </list>
@@ -32,14 +32,15 @@
       <file leaf-file-name="Game.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/scrabblegame/Game.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5637066">
-              <caret line="376" column="0" selection-start-line="376" selection-start-column="0" selection-end-line="376" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.85714287">
+              <caret line="226" column="0" selection-start-line="226" selection-start-column="0" selection-end-line="226" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#makeMoveOnBoard#0;class#Game#0" expanded="false" />
                 <element signature="method#getMessagesToStrings#0;class#Game#0" expanded="false" />
-                <element signature="method#allTheNewWords#0;class#Game#0" expanded="false" />
                 <element signature="method#checkWordsFromDict#0;class#Game#0" expanded="false" />
+                <element signature="e#6412#6413#0" expanded="true" />
+                <element signature="e#6454#6455#0" expanded="true" />
                 <element signature="method#pairsOfNewLetterCoordinates#0;class#Game#0" expanded="false" />
                 <element signature="method#getEnteredArray#0;class#Game#0" expanded="false" />
                 <element signature="method#getLeftLetterCoordinates#0;class#Game#0" expanded="false" />
@@ -49,26 +50,14 @@
                 <element signature="method#getWordToCheck#0;class#Game#0" expanded="false" />
                 <element signature="method#isInOneLine#0;class#Game#0" expanded="false" />
                 <element signature="method#isInputComprisedOfRack#0;class#Game#0" expanded="false" />
+                <element signature="method#isAdjacent#0;class#Game#0" expanded="false" />
                 <element signature="method#isLetterOnTheLeft#0;class#Game#0" expanded="false" />
                 <element signature="method#isLetterOnTheRight#0;class#Game#0" expanded="false" />
                 <element signature="method#isLetterAbove#0;class#Game#0" expanded="false" />
+                <element signature="method#isLetterBelow#0;class#Game#0" expanded="false" />
                 <element signature="method#charListToString#0;class#Game#0" expanded="false" />
                 <element signature="method#checkFromDict#0;class#Game#0" expanded="false" />
                 <element signature="method#checkIfWordIsARealWord#0;class#Game#0" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Player.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/scrabblegame/Player.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="11" column="26" selection-start-line="11" selection-start-column="26" selection-end-line="11" selection-end-column="26" />
-              <folding>
-                <element signature="e#220#221#0" expanded="true" />
-                <element signature="e#253#254#0" expanded="true" />
-                <element signature="method#addLettersToRack#0;class#Player#0" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -119,12 +108,12 @@
         <option value="$PROJECT_DIR$/src/scrabblegame/Board.java" />
         <option value="$PROJECT_DIR$/src/scrabblegame/Player.java" />
         <option value="$PROJECT_DIR$/src/scrabblegame/DictionaryDatabase.java" />
-        <option value="$PROJECT_DIR$/src/scrabblegame/stylesheet.css" />
         <option value="$PROJECT_DIR$/src/scrabblegame/CoordinatePairs.java" />
         <option value="$PROJECT_DIR$/src/scrabblegame/CoordinatePair.java" />
-        <option value="$PROJECT_DIR$/src/scrabblegame/Gui.java" />
         <option value="$PROJECT_DIR$/src/scrabblegame/Bag.java" />
         <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/src/scrabblegame/stylesheet.css" />
+        <option value="$PROJECT_DIR$/src/scrabblegame/Gui.java" />
         <option value="$PROJECT_DIR$/src/scrabblegame/Game.java" />
       </list>
     </option>
@@ -145,9 +134,10 @@
     <treeState />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="y" value="336" />
-    <option name="width" value="1366" />
-    <option name="height" value="744" />
+    <option name="x" value="43" />
+    <option name="y" value="24" />
+    <option name="width" value="1877" />
+    <option name="height" value="1056" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -174,6 +164,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scratches" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -185,6 +177,20 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="External Libraries" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Scrabble" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Scrabble" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="sqlite-jdbc-3.8.11.2.jar" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiFileNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -217,8 +223,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -746,15 +750,17 @@
       <workItem from="1451860003753" duration="637000" />
       <workItem from="1451860672657" duration="6485000" />
       <workItem from="1451938303471" duration="7334000" />
-      <workItem from="1452013153655" duration="19429000" />
+      <workItem from="1452013153655" duration="20070000" />
+      <workItem from="1452036852770" duration="745000" />
+      <workItem from="1452207894036" duration="535000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="179887000" />
+    <option name="totallyTimeSpent" value="181808000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="336" width="1366" height="744" extended-state="6" />
+    <frame x="43" y="24" width="1877" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -764,12 +770,11 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32967892" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32850242" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15301391" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24608968" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32766616" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18712121" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13489896" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32302937" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24980423" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24980423" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -781,6 +786,7 @@
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32302937" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -837,19 +843,19 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/scrabblegame/Game.java</url>
-          <line>258</line>
+          <line>255</line>
           <properties class="scrabblegame.Game" method="getLowerLetterCoordinates" />
           <option name="timeStamp" value="16" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/scrabblegame/Game.java</url>
-          <line>305</line>
+          <line>302</line>
           <properties class="scrabblegame.Game" method="isInputComprisedOfRack" />
           <option name="timeStamp" value="17" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/src/scrabblegame/Game.java</url>
-          <line>402</line>
+          <line>399</line>
           <properties class="scrabblegame.Game" method="isLetterOnTheRight" />
           <option name="timeStamp" value="19" />
         </line-breakpoint>
@@ -867,7 +873,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/scrabblegame/Game.java</url>
-          <line>426</line>
+          <line>423</line>
           <properties />
           <option name="timeStamp" value="20" />
         </line-breakpoint>
@@ -889,8 +895,9 @@
             <element signature="imports" expanded="true" />
             <element signature="method#makeMoveOnBoard#0;class#Game#0" expanded="false" />
             <element signature="method#getMessagesToStrings#0;class#Game#0" expanded="false" />
-            <element signature="method#allTheNewWords#0;class#Game#0" expanded="false" />
             <element signature="method#checkWordsFromDict#0;class#Game#0" expanded="false" />
+            <element signature="e#6412#6413#0" expanded="true" />
+            <element signature="e#6454#6455#0" expanded="true" />
             <element signature="method#pairsOfNewLetterCoordinates#0;class#Game#0" expanded="false" />
             <element signature="method#getEnteredArray#0;class#Game#0" expanded="false" />
             <element signature="method#getLeftLetterCoordinates#0;class#Game#0" expanded="false" />
@@ -900,9 +907,11 @@
             <element signature="method#getWordToCheck#0;class#Game#0" expanded="false" />
             <element signature="method#isInOneLine#0;class#Game#0" expanded="false" />
             <element signature="method#isInputComprisedOfRack#0;class#Game#0" expanded="false" />
+            <element signature="method#isAdjacent#0;class#Game#0" expanded="false" />
             <element signature="method#isLetterOnTheLeft#0;class#Game#0" expanded="false" />
             <element signature="method#isLetterOnTheRight#0;class#Game#0" expanded="false" />
             <element signature="method#isLetterAbove#0;class#Game#0" expanded="false" />
+            <element signature="method#isLetterBelow#0;class#Game#0" expanded="false" />
             <element signature="method#charListToString#0;class#Game#0" expanded="false" />
             <element signature="method#checkFromDict#0;class#Game#0" expanded="false" />
             <element signature="method#checkIfWordIsARealWord#0;class#Game#0" expanded="false" />
@@ -1270,13 +1279,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/scrabblegame/stylesheet.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.4176334">
-          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/scrabblegame/Board.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.664557">
@@ -1303,7 +1305,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.443038">
           <caret line="15" column="5" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1326,17 +1327,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/scrabblegame/Gui.java">
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider editor-type-id="MarkdownPreviewEditor">
+        <state />
+      </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.36150235">
-          <caret line="159" column="0" selection-start-line="159" selection-start-column="0" selection-end-line="159" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.66329116">
+          <caret line="20" column="47" selection-start-line="20" selection-start-column="47" selection-end-line="20" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/scrabblegame/stylesheet.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.044843048">
+          <caret line="2" column="22" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="22" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/scrabblegame/Player.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state vertical-scroll-proportion="0.21645021">
           <caret line="11" column="26" selection-start-line="11" selection-start-column="26" selection-end-line="11" selection-end-column="26" />
           <folding>
             <element signature="e#220#221#0" expanded="true" />
@@ -1346,27 +1357,25 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/README.md">
+    <entry file="file://$PROJECT_DIR$/src/scrabblegame/Gui.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.66329116">
-          <caret line="20" column="47" selection-start-line="20" selection-start-column="47" selection-end-line="20" selection-end-column="47" />
+        <state vertical-scroll-proportion="0.7186147">
+          <caret line="168" column="53" selection-start-line="168" selection-start-column="53" selection-end-line="168" selection-end-column="53" />
           <folding />
         </state>
-      </provider>
-      <provider editor-type-id="MarkdownPreviewEditor">
-        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/scrabblegame/Game.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5637066">
-          <caret line="376" column="0" selection-start-line="376" selection-start-column="0" selection-end-line="376" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.85714287">
+          <caret line="226" column="0" selection-start-line="226" selection-start-column="0" selection-end-line="226" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#makeMoveOnBoard#0;class#Game#0" expanded="false" />
             <element signature="method#getMessagesToStrings#0;class#Game#0" expanded="false" />
-            <element signature="method#allTheNewWords#0;class#Game#0" expanded="false" />
             <element signature="method#checkWordsFromDict#0;class#Game#0" expanded="false" />
+            <element signature="e#6412#6413#0" expanded="true" />
+            <element signature="e#6454#6455#0" expanded="true" />
             <element signature="method#pairsOfNewLetterCoordinates#0;class#Game#0" expanded="false" />
             <element signature="method#getEnteredArray#0;class#Game#0" expanded="false" />
             <element signature="method#getLeftLetterCoordinates#0;class#Game#0" expanded="false" />
@@ -1376,9 +1385,11 @@
             <element signature="method#getWordToCheck#0;class#Game#0" expanded="false" />
             <element signature="method#isInOneLine#0;class#Game#0" expanded="false" />
             <element signature="method#isInputComprisedOfRack#0;class#Game#0" expanded="false" />
+            <element signature="method#isAdjacent#0;class#Game#0" expanded="false" />
             <element signature="method#isLetterOnTheLeft#0;class#Game#0" expanded="false" />
             <element signature="method#isLetterOnTheRight#0;class#Game#0" expanded="false" />
             <element signature="method#isLetterAbove#0;class#Game#0" expanded="false" />
+            <element signature="method#isLetterBelow#0;class#Game#0" expanded="false" />
             <element signature="method#charListToString#0;class#Game#0" expanded="false" />
             <element signature="method#checkFromDict#0;class#Game#0" expanded="false" />
             <element signature="method#checkIfWordIsARealWord#0;class#Game#0" expanded="false" />
