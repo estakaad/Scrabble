@@ -1,12 +1,15 @@
 # Scrabble
 
-One player Scrabble-like game. The list of allowed words is based on the Estonian descriptive dictionary (http://www.eki.ee/dict/ekss/index.cgi).
+One player Scrabble-like game. The aim of the game is to score as many points as possible. The player scores for every new crossword formed on the board.
+
+The list of allowed words is based on the Estonian descriptive dictionary (http://www.eki.ee/dict/ekss/index.cgi).
 All rights to the dictionary belong to the Institute of the Estonian Language.
 
 ### Implemented rules
 * In the beginning of every move, user's rack is filled to have seven random letter tiles on it. The amount of tiles to add depends on the amount of tiles user used for their last move.
 * Tiles are picked from the bag randomly.
-* User has to set tiles in one row or one column, from left to right or from up to down.
+* The amount of certain letter tiles in the bag is inversely proportional to its value. For example, there are 10 A-s, but each A gives 1 point, whereas there is only one Z but it alone gives 10 points. 
+* User has to set tiles in one row or one column, from left to right or from top to bottom.
 * Declinable words must be in singular nominative, conjugable words in supine.
 * Word is a valid word if it exists in the Estonian descriptive dictionary.
 * Every new word must be adjacent to an already existing word on the board.
@@ -19,6 +22,3 @@ All rights to the dictionary belong to the Institute of the Estonian Language.
 * The board should have double and triple bonus squares.
 * The first word set on the board must always cross the square in the middle of the board.
 * The bag doesn't contain the any-letter tiles. 
-
-###Known bugs
-* Error occurs, when player enters a word which otherwise would be valid, but which includes more instances of a letter than there is on the rack. For example, rack is AAEKSGF, player enters KASSA. Every letter is indeed on the rack, but player entered more S-s than there are on the rack.
