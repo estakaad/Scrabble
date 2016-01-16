@@ -58,7 +58,7 @@ public class Game {
             legal = false;
         }
 
-        if (isAdjacent(wholeBoard, listOfCoordinatePairs) == false) {
+        if (isAdjacent(previousBoardState, listOfCoordinatePairs) == false) {
             errorMessages.add("Vähemalt üks täht peab asuma kõrvuti juba laual oleva tähega.");
             legal = false;
         }
@@ -318,6 +318,7 @@ public class Game {
             for (int i = 0; i < listOfCoordinatePairs.size(); i++) {
 
                 CoordinatePair coordinatePair = listOfCoordinatePairs.get(i);
+                System.out.println(coordinatePair.x + "," + coordinatePair.y);
 
                 if (coordinatePair.y == 0 && coordinatePair.x != 0 && coordinatePair.x != 14) {
                     if (!(isLetterAbove(previousBoardState, coordinatePair) ||
@@ -371,13 +372,15 @@ public class Game {
                         return false;
                     }
                 }
-
+                //Letter is somewhere in the middle
                 if (coordinatePair.x > 0 && coordinatePair.x < 14 && coordinatePair.y > 0 && coordinatePair.y < 14) {
-                    if (!(isLetterAbove(previousBoardState, coordinatePair) ||
+
+                    if (!((isLetterAbove(previousBoardState, coordinatePair) ||
                         isLetterBelow(previousBoardState, coordinatePair) ||
                         isLetterOnTheLeft(previousBoardState, coordinatePair) ||
-                        isLetterOnTheRight(previousBoardState, coordinatePair) == true)) {
-                        return  false;
+                        isLetterOnTheRight(previousBoardState, coordinatePair)) == true)) {
+                        System.out.println("mida returnid?");
+                        return false;
                     }
                 }
             }
@@ -388,10 +391,10 @@ public class Game {
     //Is there already an adjacent letter to the left of one of the entered letters?
     private boolean isLetterOnTheLeft(char[][] previousBoardState, CoordinatePair coordinatePair) {
 
-        if (!board.isBoardEmpty()) {
-            if (previousBoardState[coordinatePair.y - 1][coordinatePair.x] == ' ') {
-                return false;
-            }
+        if (previousBoardState[coordinatePair.y - 1][coordinatePair.x] == ' ') {
+            System.out.println("vasak ruut: x: " + (coordinatePair.x) + "y: " + (coordinatePair.y - 1));
+            System.out.println("vasakul ei ole midagi");
+            return false;
         }
         return true;
     }
@@ -399,10 +402,10 @@ public class Game {
     //Is there already an adjacent letter to the right of one of the entered letters?
     private boolean isLetterOnTheRight(char[][] previousBoardState, CoordinatePair coordinatePair) {
 
-        if (!board.isBoardEmpty()) {
-            if (previousBoardState[coordinatePair.y + 1][coordinatePair.x] == ' ') {
-                return false;
-            }
+        if (previousBoardState[coordinatePair.y + 1][coordinatePair.x] == ' ') {
+            System.out.println("parem ruut: x: " + (coordinatePair.x) + "y: " + (coordinatePair.y + 1));
+            System.out.println("paremal ei ole midagi");
+            return false;
         }
         return true;
     }
@@ -410,10 +413,10 @@ public class Game {
     //Is there already an adjacent letter above one of the entered letters?
     private boolean isLetterAbove(char[][] previousBoardState, CoordinatePair coordinatePair) {
 
-        if (!board.isBoardEmpty()) {
-            if (previousBoardState[coordinatePair.y][coordinatePair.x - 1] == ' ') {
-                return false;
-            }
+        if (previousBoardState[coordinatePair.y][coordinatePair.x - 1] == ' ') {
+            System.out.println("ülemine ruut: x: " + (coordinatePair.x - 1) + "y: " + (coordinatePair.y));
+            System.out.println("üleval ei ole midagi");
+            return false;
         }
         return true;
     }
@@ -421,11 +424,11 @@ public class Game {
     //Is there already an adjacent letter below one of the entered letters?
     private boolean isLetterBelow(char[][] previousBoardState, CoordinatePair coordinatePair) {
 
-        if (!board.isBoardEmpty()) {
-            if (previousBoardState[coordinatePair.y][coordinatePair.x + 1] == ' ') {
-                return false;
+        if (previousBoardState[coordinatePair.y][coordinatePair.x + 1] == ' ') {
+            System.out.println("alumine ruut: x: " + (coordinatePair.x + 1) + "y: " + (coordinatePair.y));
+            System.out.println("all ei ole midagi");
+            return false;
             }
-        }
         return true;
     }
 
