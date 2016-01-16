@@ -67,6 +67,39 @@ public class Gui {
 
         }
 
+        for (int i = 0; i < squares.length; i++) {
+            for (int j = 0; j < squares.length; j++) {
+                if (((i % 7 == 0) && (j == 3 || j == 11)) ||
+                    ((i == 3 || i == 11) && (j % 7 == 0)) ||
+                    ((j == 2 || j == 12) && ((i == 6) || (i == 8))) ||
+                    ((j == 6 || j == 8) && (i % 2 == 0 && i != 4 && i != 10 && i != 0 && i != 14))) {
+                    squares[i][j].getStyleClass().add("doubleletter");
+                }
+            }
+        }
+
+        for (int i = 0; i < squares.length; i++) {
+            for (int j = 0; j < squares.length; j++) {
+                if ((j == 5 || j == 9) && (i % 4 == 1) ||
+                    ((j == 1 || j == 13) && (i == 5 || i == 9))) {
+                    squares[i][j].getStyleClass().add("tripleletter");
+                }
+            }
+        }
+
+       squares[7][7].getStyleClass().add("doubleword");
+
+        for (int i = 0; i < squares.length; i++) {
+            for (int j = 0; j < squares.length; j++) {
+                if (i == 7 && j == 7 ) {
+                } else {
+                    if ((i == 0 || i % 7 == 0) && (j == 0 || j % 7 == 0)) {
+                        squares[i][j].getStyleClass().add("tripleword");
+                    }
+                }
+            }
+        }
+
         // James_D http://stackoverflow.com/questions/34407694/javafx-textfield-allow-only-one-letter-to-be-typed?lq=1
         //Allow only one letter to be typed:
         for (int i = 0; i < 15; i++) {

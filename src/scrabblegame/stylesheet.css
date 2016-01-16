@@ -10,3 +10,20 @@
 .text-field {
     -fx-font-weight: bold;
 }
+
+.doubleletter {
+    -fx-control-inner-background: lightblue;}
+
+.doubleword {
+    -fx-control-inner-background: rgb(255, 130, 119);
+}
+
+.tripleletter {
+    -fx-control-inner-background: #008ad0;
+
+}
+
+.tripleword {
+    -fx-control-inner-background: #d00001;
+
+}

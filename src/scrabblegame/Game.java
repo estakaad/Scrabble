@@ -209,6 +209,7 @@ public class Game {
         for (int i = 0; i < listOfCoordinatePairs.size(); i++) {
             enteredArray.add(wholeBoard[listOfCoordinatePairs.get(i).y][listOfCoordinatePairs.get(i).x]);
         }
+        System.out.println(enteredArray);
 
         return enteredArray;
     }
@@ -385,6 +386,7 @@ public class Game {
                 }
             }
         }
+        System.out.println("selle tähega on ok");
         return true;
     }
 
@@ -393,7 +395,7 @@ public class Game {
 
         if (previousBoardState[coordinatePair.y - 1][coordinatePair.x] == ' ') {
             System.out.println("vasak ruut: x: " + (coordinatePair.x) + "y: " + (coordinatePair.y - 1));
-            System.out.println("vasakul ei ole midagi");
+            System.out.println("tähest " + previousBoardState[coordinatePair.y - 1][coordinatePair.x] + "vasakul ei ole midagi");
             return false;
         }
         return true;
