@@ -10,7 +10,7 @@ public class Game {
     Bag bag = new Bag();
     Player player = new Player();
     DictionaryDatabase db = new DictionaryDatabase();
-    private ArrayList<String> errorMessages = new ArrayList<String>();
+    protected ArrayList<String> errorMessages = new ArrayList<String>();
     private int pointsLastMove;
 
     public Game() {
