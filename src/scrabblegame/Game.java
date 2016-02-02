@@ -321,11 +321,14 @@ public class Game {
                 CoordinatePair coordinatePair = listOfCoordinatePairs.get(i);
                 System.out.println(coordinatePair.x + "," + coordinatePair.y);
 
+
                 if (coordinatePair.y == 0 && coordinatePair.x != 0 && coordinatePair.x != 14) {
                     if (!(isLetterAbove(previousBoardState, coordinatePair) ||
                         isLetterOnTheRight(previousBoardState, coordinatePair) ||
                         isLetterBelow(previousBoardState, coordinatePair) == true)) {
                         return false;
+                    } else {
+                        return true;
                     }
                 }
                 if (coordinatePair.x == 0 && coordinatePair.y != 0 && coordinatePair.x != 14) {
@@ -333,6 +336,8 @@ public class Game {
                         isLetterBelow(previousBoardState, coordinatePair) ||
                         isLetterOnTheRight(previousBoardState, coordinatePair) == true)) {
                         return false;
+                    }else {
+                        return true;
                     }
                 }
                 if (coordinatePair.y == 14 && coordinatePair.x != 0 && coordinatePair.x != 14) {
@@ -340,6 +345,8 @@ public class Game {
                         isLetterBelow(previousBoardState, coordinatePair) ||
                         isLetterOnTheLeft(previousBoardState, coordinatePair) == true)) {
                         return false;
+                    }else {
+                        return true;
                     }
                 }
                 if (coordinatePair.x == 14 && coordinatePair.y != 0 && coordinatePair.y != 14) {
@@ -353,40 +360,51 @@ public class Game {
                     if (!(isLetterOnTheRight(previousBoardState, coordinatePair) ||
                         isLetterBelow(previousBoardState, coordinatePair) == true)) {
                         return false;
+                    }else {
+                        return true;
                     }
                 }
                 if (coordinatePair.x == 0 && coordinatePair.y == 14) {
                     if (!(isLetterOnTheLeft(previousBoardState, coordinatePair) ||
                         isLetterBelow(previousBoardState, coordinatePair) == true)) {
                         return false;
+                    }else {
+                        return true;
                     }
                 }
                 if (coordinatePair.x == 14 && coordinatePair.y == 14) {
                     if ((!isLetterOnTheLeft(previousBoardState, coordinatePair) ||
                         isLetterAbove(previousBoardState, coordinatePair) == true)) {
                         return false;
+                    }else {
+                        return true;
                     }
                 }
                 if (coordinatePair.x == 14 && coordinatePair.y == 0) {
                     if (!(isLetterAbove(previousBoardState, coordinatePair) ||
                         isLetterOnTheRight(previousBoardState, coordinatePair) == true)) {
                         return false;
+                    }else {
+                        return true;
                     }
                 }
+
                 //Letter is somewhere in the middle
                 if (coordinatePair.x > 0 && coordinatePair.x < 14 && coordinatePair.y > 0 && coordinatePair.y < 14) {
 
                     if (!((isLetterAbove(previousBoardState, coordinatePair) ||
-                        isLetterBelow(previousBoardState, coordinatePair) ||
-                        isLetterOnTheLeft(previousBoardState, coordinatePair) ||
-                        isLetterOnTheRight(previousBoardState, coordinatePair)) == true)) {
-                        System.out.println("mida returnid?");
+                            isLetterBelow(previousBoardState, coordinatePair) ||
+                            isLetterOnTheLeft(previousBoardState, coordinatePair) ||
+                            isLetterOnTheRight(previousBoardState, coordinatePair)) == true)) {
                         return false;
+                    }else {
+                        return true;
                     }
                 }
+                System.out.println("kas siia jõuab?");
             }
         }
-        System.out.println("selle tähega on ok");
+
         return true;
     }
 
@@ -395,9 +413,10 @@ public class Game {
 
         if (previousBoardState[coordinatePair.y - 1][coordinatePair.x] == ' ') {
             System.out.println("vasak ruut: x: " + (coordinatePair.x) + "y: " + (coordinatePair.y - 1));
-            System.out.println("tähest " + previousBoardState[coordinatePair.y - 1][coordinatePair.x] + "vasakul ei ole midagi");
+            System.out.println("vasakul ei ole midagi");
             return false;
         }
+        System.out.println("vasakul on midagi");
         return true;
     }
 
@@ -409,6 +428,7 @@ public class Game {
             System.out.println("paremal ei ole midagi");
             return false;
         }
+        System.out.println("paremal on midagi");
         return true;
     }
 
@@ -420,6 +440,7 @@ public class Game {
             System.out.println("üleval ei ole midagi");
             return false;
         }
+        System.out.println("üleval on midagi");
         return true;
     }
 
@@ -431,6 +452,7 @@ public class Game {
             System.out.println("all ei ole midagi");
             return false;
             }
+        System.out.println("all on midagi");
         return true;
     }
 
