@@ -1,6 +1,8 @@
 # Scrabble
 
-One player Scrabble-like game. The aim of the game is to score as many points as possible. The player scores for every new crossword formed on the board.
+One player Scrabble-like game, created using Java, JavaFX, SQLite and JUnit tests.
+
+The aim of the game is to score as many points as possible. The player scores for every new crossword formed on the board.
 
 The list of allowed words is based on the Estonian descriptive dictionary (http://www.eki.ee/dict/ekss/index.cgi).
 All rights to the dictionary belong to the Institute of the Estonian Language.
