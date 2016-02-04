@@ -1,6 +1,6 @@
 # Scrabble
 
-One player Scrabble-like game, created using Java, JavaFX, SQLite and JUnit tests.
+One player Scrabble-like game, created using Java, JavaFX, SQLite and JUnit.
 
 The aim of the game is to score as many points as possible. The player scores for every new crossword formed on the board.
 
